@@ -1,0 +1,22 @@
+.home-title{
+	font-size: 60px;
+    color: rgb(0, 0, 255);
+    text-align: center;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+    font-weight: bold
+}
+.body-text{
+	font-size: 25px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+
+    margin-left: 300px;
+    margin-right: 300px;
+    font-family: Arial, sans-serif;
+}
+.home-buttons {
+    display: grid;
+    place-items: center; 
+    gap: 10px; /* Optional: space between buttons */
+  }
