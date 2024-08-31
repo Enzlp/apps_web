@@ -19,4 +19,16 @@
     display: grid;
     place-items: center; 
     gap: 10px; /* Optional: space between buttons */
-  }
+}
+
+/* Agregar-donaciones */
+.body-agregar{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
