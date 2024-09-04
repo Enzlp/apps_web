@@ -4,8 +4,43 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Información dispositivos</title>
+	<link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
-<body>
+<body class="information-body">
+	<div>
+        <button id="corner-btn" type="button">Home</button>
+    </div>
+	<section id = "dispositivo-1" hidden>
+		<div >
+			<h2>Informacion de contacto</h2>
+			<p >Nombre: Juan Carlos Bodoque</p>
+		    <p >Email: juan.carlos@gmail.com</p>
+		    <p >Teléfono: +56 9 1234 5678</p>
+		    <p >Comuna: Providencia</p>
+		    <p>Región: Metropolitana</p>
+		    <h2>Información del dispositivo</h2>
+		    <p>Nombre: Lenovo Tab P11</p>
+		    <p>Tipo: Tablet</p>
+		    <p>Estado: Funciona Perfecto</p>
+		    <p>Años de Uso: 2</p>
+		    <h2>Fotos</h2>
+		    <img class="section-img" src="../media/lenovo.jpg">
 
+		   	<div class="comment-section">
+			   	<h2>Comentarios</h2>
+		        <ul id="comment-list">
+		            <p></p>
+		        </ul>
+	            <form>
+	                <textarea placeholder='Agregar comentario' name="comment" id="comentario" rows="4" cols="50" required minlength="3" maxlength="80"></textarea>
+	                <br>
+	                <button type="button" id="send-comment">Agregar comentario</button>
+	            </form>
+            </div>
+		</div>
+
+	</section>
+	<script src="../js/logic.js"></script>
+	<script src="../js/show-info.js"></script>
 </body>
 </html>

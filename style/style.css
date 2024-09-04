@@ -203,3 +203,30 @@ td {
 tbody tr {
     cursor: pointer;
 }
+
+.table-img{
+    width: 120px;
+    height: 120px;
+    object-fit: cover; 
+    overflow: hidden;
+}
+
+/* informacion-dispositivo*/
+.section-img{
+    width: 640px;
+    height: 480px;
+    object-fit: cover; 
+    overflow: hidden;
+}
+
+
+
+.information-body{
+    background-color: #f4f4f4;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+}

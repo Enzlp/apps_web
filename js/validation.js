@@ -43,7 +43,9 @@ const validateNameDevice = (deviceName) => {
 
 const validateUseYears = (years) => {
 	if (!years) return false;
-    return years >= 1 && years <= 99;
+	let isInteger = Number.isInteger(years);
+	let inRange = (years >= 1 && years <= 99);
+	return isInteger && inRange;
 
 }
 
