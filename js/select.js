@@ -17,6 +17,8 @@ const regiones = {
 	"Magallanes":["Punta Arenas", "Puerto Natales", "Porvenir", "Cabo de Hornos", "Laguna Blanca", "Río Verde", "San Gregorio", "Timaukel", "Natales", "Antártica"],
 };
 
+
+
 const poblarRegiones = () => {
 	let regionSelect =document.getElementById("select-region");
 	for (const region in regiones){

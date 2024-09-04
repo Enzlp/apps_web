@@ -3,10 +3,35 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Donaciones</title>
+	<title>Ver Dispositivos</title>
+	<link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
-
-<body>
-
+<body class= "ver-dispositivos-body">
+	<div >
+        <button id="corner-btn" type="button">Home</button>
+    </div>
+	<div class = "table-container">
+		<table>
+			<thead>
+				<tr>
+					<th>Tipo</th>
+					<th>Nombre<br>Dispositivo</th>
+					<th>Estado</th>
+					<th>Comuna</th>
+					<th>Fotos</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr onclick="window.location.href='informacion-dispositivo.html'">
+					<td>Notebook</td>
+					<td>Lenovo Tab P11</td>
+					<td>Funciona Perfecto</td>
+					<td>Providencia</td>
+					<td><a href="../view/photos.html">Fotos</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="../js/logic.js"></script>
 </body>
 </html>
