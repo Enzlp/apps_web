@@ -4,3 +4,5 @@ homePageBtn.addEventListener("click", () =>{
 	    	window.location.href = "../view/index.html";
 	    });
 
+
+

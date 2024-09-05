@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,31 +11,26 @@
 	<title>Home Page</title>
 </head>
 <body>
-	<header>
-		<div class="navbar navbar-dark bg-primary shadow-sm">
-			<div class="container">
-				<div class="navbar-brand d-flex align-items-center">
-				<img src="../media/chip-svg.svg" alt="" width="40" height="40"></img>
-				<strong>|	Donacion de Articulos Electrónicos</strong>
-				</div>
+	<div class="navbar navbar-dark bg-primary shadow-sm">
+		<div class="container">
+			<div class="navbar-brand d-flex align-items-center">
+			<img src="../media/chip-svg.svg" alt="" width="40" height="40">
+			<strong>|	Donacion de Articulos Electrónicos</strong>
 			</div>
 		</div>
+	</div>
+	<h1 class = "home-title">Dona tus artículos electronicos!!</h1>
+	<div class="d-flex justify-content-center" style="padding : 20px;">
 		<div>
-			<h1 class = "home-title">Dona tus artículos electronicos!!</h1>
-			<p class = "body-text"> Recicla tu dispositivo inactivo y da nueva vida a otros dispositivos que puedan beneficiar a quienes los necesiten. Al reciclar, no solo estás reduciendo residuos electrónicos, sino que también estás contribuyendo a un ciclo de reutilización que ayuda a mejorar la vida de otras personas. 
+			<p class = "body-text"> Recicla tu dispositivo inactivo y da nueva vida a otros dispositivos que puedan beneficiar a quienes los necesiten. Al reciclar, no solo estás reduciendo residuos electrónicos, sino que también estás contribuyendo a un ciclo de reutilización que ayuda a mejorar la vida de otras personas. Cada dispositivo cuenta, y tu acción puede marcar una gran diferencia en la comunidad. Haz click para ver dispositivos o agregar tu donación. ¡Haz tu parte y transforma lo viejo en algo nuevo y útil!
+		</div>	
+		<div class = "home-img" >
+		    <img src="../media/dispose.jpg" alt="" width="600" height="450">
 		</div>
-		<div>
-			<div style="text-align: center;">
-			    <img img src="../media/dispose.jpg" alt="" width="400" height="300">
-			</div>
-			<p class = "body-text">
-				Cada dispositivo cuenta, y tu acción puede marcar una gran diferencia en la comunidad. Haz click para ver dispositivos o agregar tu donación. ¡Haz tu parte y transforma lo viejo en algo nuevo y útil!
-			</p>
-		</div>
-	</header>
-	<p class = "home-buttons">
-          <a href="agregar-donacion.html" class="btn btn-lg btn-primary my-1">Agregar Donación</a>
-          <a href="ver-dispositivos.html" class="btn btn-lg btn-primary my-1">Ver Dispositivos</a>
-    </p>
+	</div>
+	<div class="home-buttons d-flex justify-content-center" style="padding: 20px;">
+   		<button class="btn btn-lg btn-primary me-2" onclick="window.location.href='agregar-donacion.html'">Agregar Donación</button>
+    	<button class="btn btn-lg btn-primary" onclick="window.location.href='ver-dispositivos.html'">Ver Dispositivos</button>
+	</div>
 </body>
 </html>

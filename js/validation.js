@@ -45,8 +45,7 @@ const validateUseYears = (years) => {
 	if (!years) return false;
 	let isInteger = Number.isInteger(years);
 	let inRange = (years >= 1 && years <= 99);
-	return isInteger && inRange;
-
+	return inRange;
 }
 
 const validateImages = (images) => {
@@ -217,6 +216,7 @@ const validateForm = () =>{
 
 	    // Agregar botones para enviar el formulario o volver
 	    let submitButton = document.createElement("button");
+	    
 	    submitButton.innerText = "Sí, confirmo";
 	    submitButton.style.marginRight = "8px";
 

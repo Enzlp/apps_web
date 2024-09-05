@@ -26,7 +26,7 @@ const addDeviceSection = () => {
             '<option value = "Otro">Otro</option>'+
         '</select><br>'+
         '<label for="anos-dispositivo'+sectionCount+'">Años De Uso</label>'+
-        '<input type="text" name="anos-dispositivo'+sectionCount+'" class="anos-dispositivo" id="anos-dispositivo'+sectionCount+'" size="3" maxlength="3" required><br>'+
+        '<input type="number" name="anos-dispositivo'+sectionCount+'" class="anos-dispositivo" id="anos-dispositivo'+sectionCount+'" size="3" maxlength="3" required><br>'+
         '<label for="estado-funcionamiento'+sectionCount+'">Estado de Funcionamiento</label>'+
         '<select name="estado-funcionamiento'+sectionCount+'" class="select-estado" id="select-estado'+sectionCount+'" required>'+
             '<option value="">Seleccione un Estado de Funcionamiento</option>'+
