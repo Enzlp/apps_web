@@ -253,9 +253,52 @@ const validateForm = () =>{
 };
 
 
+
+const validateComment = (id) => {
+    let nameField = document.getElementById(`nombre-comentarista${id}`);
+    let commentField = document.getElementById(`comentario-${id}`);
+    
+    // Validar el nombre del comentarista
+    let nameValid = nameField.value.length >= 3 && nameField.value.length <= 80;
+    // validar el comentario dado
+    let commentValid = commentField.value.length >= 5;
+    return nameValid && commentValid;
+}
+
+const validateCommentSection = (id) => {
+    let validBox = document.getElementById(`dispositivo-${id}`).querySelector("#val-box");
+    let validMsgElem = document.getElementById(`dispositivo-${id}`).querySelector("#val-msg");
+    let validationResult = validateComment(id);
+
+    if (!validationResult) {
+        // Displaying the error message
+        validMsgElem.innerText = "No se pudo enviar el comentario ingresado.";
+        validBox.style.backgroundColor = "#ffdddd";
+        validBox.style.borderLeftColor = "#f44336";
+        validBox.hidden = false;
+    } else {
+        let commentForm = document.forms[`comment-form-${id}`];
+        commentForm.style.display = "none";
+        
+        // Hide the name input field and its label
+        let commentName = document.getElementById(`dispositivo-${id}`).querySelector("#nombre-comentario");
+        commentName.hidden = true
+
+        // Displaying success message
+        validMsgElem.innerText = "Su mensaje fue agregado a comentarios";
+        validBox.style.backgroundColor = "#ddffdd";
+        validBox.style.borderLeftColor = "#4CAF50";
+        validBox.hidden = false;
+    }
+}
+
+
+
 //Eventos y ejecuciones
 let submitBtn = document.getElementById("submit-btn");
-submitBtn.addEventListener("click", validateForm);
+if(submitBtn){
+	submitBtn.addEventListener("click", validateForm);
+}
 
 
 
