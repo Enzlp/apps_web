@@ -1,7 +1,7 @@
 # Desarrollo de aplicaciones web
 
 ## Tarea 1
-La tarea posee 4 carpetas, donde js es la carpeta con los archivos js que hacen la lógica interna. La Carpeta media posee los archivos multimedias que se usaron en el desarrollo de la página, la carpeta view están los archivos html donde de las vistas pedidas y en la carpeta style esta el archivo style con el código css usado. Además se uso bootstrap para poder simplificar el diseño de algunos elementos.
+La tarea posee 4 carpetas, donde js es la carpeta con los archivos js que hacen la lógica interna. La Carpeta media posee los archivos multimedias que se usaron en el desarrollo de la página, la carpeta view están los archivos html donde de las vistas pedidas y en la carpeta style esta el archivo style con el código css usado. Además se uso bootstrap para poder simplificar el diseño de algunos elementos. Todos los archivos se entregarán através de un zip.
 
 
 ### index.html
