@@ -252,7 +252,8 @@ tbody tr {
     padding:0;
 }
 
-button#send-comment{
+
+.send-comment{
     font-size: 12px;
     padding: 10px 20px;
     color: white;
@@ -260,7 +261,7 @@ button#send-comment{
     background-color: #4169E1;
     cursor: pointer;
 }
-button#send-comment:hover{
+.send-comment:hover{
     background-color: #00008B;
 }
 

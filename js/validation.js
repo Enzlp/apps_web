@@ -258,31 +258,32 @@ const validateComment = (id) => {
     let nameField = document.getElementById(`nombre-comentarista${id}`);
     let commentField = document.getElementById(`comentario-${id}`);
     
-    // Validar el nombre del comentarista
+    // Validate the commentator's name
     let nameValid = nameField.value.length >= 3 && nameField.value.length <= 80;
-    // validar el comentario dado
+    // Validate the comment
     let commentValid = commentField.value.length >= 5;
     return nameValid && commentValid;
 }
 
 const validateCommentSection = (id) => {
-    let validBox = document.getElementById(`dispositivo-${id}`).querySelector("#val-box");
-    let validMsgElem = document.getElementById(`dispositivo-${id}`).querySelector("#val-msg");
+    let validBox = document.getElementById(`val-box-${id}`);
+    let validMsgElem = document.getElementById(`val-msg-${id}`);
     let validationResult = validateComment(id);
 
     if (!validationResult) {
         // Displaying the error message
         validMsgElem.innerText = "No se pudo enviar el comentario ingresado.";
-        validBox.style.backgroundColor = "#ffdddd";
-        validBox.style.borderLeftColor = "#f44336";
+		validBox.style.backgroundColor = "#ffdddd";
+		validBox.style.borderLeftColor = "#f44336";
         validBox.hidden = false;
     } else {
+
         let commentForm = document.forms[`comment-form-${id}`];
         commentForm.style.display = "none";
         
         // Hide the name input field and its label
-        let commentName = document.getElementById(`dispositivo-${id}`).querySelector("#nombre-comentario");
-        commentName.hidden = true
+        let commentName = document.getElementById(`nombre-comentario-${id}`);
+        commentName.hidden = true;
 
         // Displaying success message
         validMsgElem.innerText = "Su mensaje fue agregado a comentarios";
