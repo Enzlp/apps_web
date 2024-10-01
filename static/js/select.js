@@ -17,6 +17,44 @@ const regiones = {
 	"Magallanes":["Punta Arenas", "Puerto Natales", "Porvenir", "Cabo de Hornos", "Laguna Blanca", "Río Verde", "San Gregorio", "Timaukel", "Natales", "Antártica"],
 };
 
+const tipos = [
+    "Pantalla",
+    "Notebook",
+    "Tablet",
+    "Celular",
+    "Consola",
+    "Mouse",
+    "Teclado",
+    "Impresora",
+    "Parlante",
+    "Audífonos",
+    "Otro"
+]
+const dev_status = [
+    "Funciona Perfecto",
+    "Funciona a medias",
+    "No funciona"
+]
+
+const poblarTipos = (selectId) => {
+	let tipoSelect = document.getElementById(selectId);
+	for (const tipo of tipos){
+		let option = document.createElement("option");
+		option.value = tipo;
+		option.text = tipo;
+		tipoSelect.appendChild(option)
+	}
+}
+
+const poblarEstados = (selectId) => {
+	let estadoSelect = document.getElementById(selectId);
+	for (const estado of dev_status){
+		let option = document.createElement("option");
+		option.value = estado;
+		option.text = estado;
+		estadoSelect.appendChild(option)
+	}
+}
 
 
 const poblarRegiones = () => {

@@ -13,26 +13,12 @@ const addDeviceSection = () => {
         '<label for="select-tipo'+sectionCount+'">Tipo</label>'+
         '<select name="select-tipo'+sectionCount+'" id = select-tipo'+sectionCount+' class="select-tipo" required>'+
             '<option value="">Seleccione un Tipo</option>'+
-            '<option value = "Pantalla">Pantalla</option>'+
-            '<option value = "Notebook">Notebook</option>'+
-            '<option value = "Tablet">Tablet</option>'+
-            '<option value = "Celular">Celular</option>'+
-            '<option value = "Consola">Consola</option>'+
-            '<option value = "Mouse">Mouse</option>'+
-            '<option value = "Teclado">Teclado</option>'+
-            '<option value = "Impresora">Impresora</option>'+
-            '<option value = "Parlante">Parlante</option>'+
-            '<option value = "Audífonos">Audífonos</option>'+
-            '<option value = "Otro">Otro</option>'+
         '</select><br>'+
         '<label for="anos-dispositivo'+sectionCount+'">Años De Uso</label>'+
         '<input type="number" name="anos-dispositivo'+sectionCount+'" class="anos-dispositivo" id="anos-dispositivo'+sectionCount+'" size="3" maxlength="3" required><br>'+
         '<label for="estado-funcionamiento'+sectionCount+'">Estado de Funcionamiento</label>'+
         '<select name="estado-funcionamiento'+sectionCount+'" class="select-estado" id="select-estado'+sectionCount+'" required>'+
             '<option value="">Seleccione un Estado de Funcionamiento</option>'+
-            '<option value = "Funciona Perfecto">Funciona Perfecto</option>'+
-            '<option value = "Funciona a medias">Funciona a medias</option>'+
-            '<option value = "No funciona">No funciona</option>'+
         '</select><br>'+
         '<label for="fotos-productos'+sectionCount+'">Fotos de Productos</label>'+
         '<input type="file" name="fotos-productos'+sectionCount+'"id="fotos-productos'+sectionCount+'" multiple accept="image/*,.pdf" required><br>';
@@ -43,4 +29,10 @@ const addDeviceSection = () => {
 };
 
 const addSectionBtn = document.getElementById("add-btn");
-addSectionBtn.addEventListener("click", addDeviceSection);
+
+addSectionBtn.addEventListener("click", () => {
+    addDeviceSection();
+    poblarEstados('select-estado'+sectionCount);
+    poblarTipos('select-tipo'+sectionCount);
+});
+
