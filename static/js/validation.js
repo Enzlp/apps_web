@@ -42,10 +42,10 @@ const validateNameDevice = (deviceName) => {
 //No es necesario validar la descripción porque es opicional
 
 const validateUseYears = (years) => {
-	if (!years) return false;
-	let isInteger = Number.isInteger(years);
-	let inRange = (years >= 1 && years <= 99);
-	return inRange;
+    if (!years) return false;
+    let isInteger = Number.isInteger(Number(years));
+    let inRange = (years >= 1 && years <= 99);
+    return isInteger && inRange;
 }
 
 const validateImages = (images) => {
@@ -130,11 +130,11 @@ const validatePhotosIter = () => {
 const validateForm = () =>{
 	let myForm = document.forms["agregarDonacion"];
 	//Obtenemos valores ingresados
-	let nombre = myForm["nombre"].value;
-	let email = myForm["email"].value;
-	let phone = myForm["phone"].value;
-	let region = myForm["select-region"].value;
-	let comuna = myForm["select-comuna"].value;
+	let nombre = myForm["nombre"].value.trim();
+	let email = myForm["email"].value.trim();
+	let phone = myForm["phone"].value.trim();
+	let region = myForm["select-region"].value.trim();
+	let comuna = myForm["select-comuna"].value.trim();
 
 	// Validaciones para cada atributo ingresado
 	let invalidInputs = [];
@@ -259,7 +259,7 @@ const validateComment = (id) => {
     let commentField = document.getElementById(`comentario-${id}`);
     
     // Validate the commentator's name
-    let nameValid = nameField.value.length >= 3 && nameField.value.length <= 80;
+    let nameValid = nameField.value.trim().length >= 3 && nameField.value.trim().length <= 80;
     // Validate the comment
     let commentValid = commentField.value.length >= 5;
     return nameValid && commentValid;
