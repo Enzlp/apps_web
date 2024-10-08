@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from database import db
+from utils.validations import validate_contact_info
 
 app = Flask(__name__)
 
@@ -6,8 +8,15 @@ app = Flask(__name__)
 def home_page():
     return render_template('index.html')
 
-@app.route('/agregar_donacion')
+@app.route('/agregar_donacion', methods = ["GET", "POST"])
 def agregar_donacion():
+    if request.method == "POST":
+        c_name = request.form.get("nombre")
+        c_email = request.form.get("email")
+        c_celular = request.form.get("phone")
+        c_comuna_nombre = request.form.get("select_comuna")
+        if validate_contact_info(c_name, c_email, c_celular):
+            pass
     return render_template('agregar-donacion.html')
 
 @app.route('/ver-dispositivos')

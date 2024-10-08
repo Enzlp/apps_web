@@ -6,7 +6,9 @@
     font-family: Arial, sans-serif;
     font-weight: bold
 }
+
 .body-text{
+    
 	font-size: 25px;
     color: rgb(0, 0, 0);
     margin-top: 10px;
@@ -30,10 +32,6 @@
 
 /* Agregar-donaciones */
 .body-agregar {
-    background-image: url('../media/BACK_1.png');
-    background-size: cover; /* Ensures the image covers the entire page */
-    background-position: center; /* Centers the background image */
-    background-repeat: no-repeat; 
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
