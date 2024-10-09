@@ -14,10 +14,16 @@ def agregar_donacion():
         c_name = request.form.get("nombre")
         c_email = request.form.get("email")
         c_celular = request.form.get("phone")
-        c_comuna_nombre = request.form.get("select_comuna")
-        if validate_contact_info(c_name, c_email, c_celular):
-            pass
-    return render_template('agregar-donacion.html')
+        c_comuna_id = request.form.get("select_comuna")
+        error = ""
+        if validate_contact_info(c_name, c_email, c_celular, c_comuna_id):
+            db.create_contact(c_name, c_email, c_celular, c_comuna_id)
+            return render_template('index.html')    
+        else:
+            error += "Los campos ingresados son invalidos"
+        return render_template('agregar-donacion.html', error = error)
+    elif request.method =="GET":
+        return render_template('agregar-donacion.html')
 
 @app.route('/ver-dispositivos')
 def ver_dispositivos():

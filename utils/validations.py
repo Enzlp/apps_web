@@ -1,7 +1,8 @@
 import re
+from database import db
 
-def validate_contact_info(nombre, email, phone):
-    valid_res = validate_contact_name(nombre) and validate_contact_email(email) and validate_contact_phone(phone)
+def validate_contact_info(nombre, email, phone, comuna):
+    valid_res = validate_contact_name(nombre) and validate_contact_email(email) and validate_contact_phone(phone) and validate_comuna(comuna)
     return valid_res
 
 def validate_contact_name(nombre):
@@ -26,3 +27,9 @@ def validate_contact_phone(phone):
     valid_format = bool(re.match(r'^[0-9]+$', phone))
 
     return valid_format and length_valid
+
+def validate_comuna(comuna):
+    db_name = db.get_comuna_by_id(comuna)
+    if db_name is not None and db_name == comuna:
+        return True
+    return False

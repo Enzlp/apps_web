@@ -26,12 +26,11 @@ def get_conn():
 
 #-- querys --
 
-def create_contact(nombre, email, celular, comuna_nombre):
+def create_contact(nombre, email, celular, comuna_id):
     conn = get_conn()
     cursor = conn.cursor()
     current_date = datetime.date.today()
-    comuna_id = get_id_by_comuna(comuna_nombre)
-    cursor.exexute(QUERY_DICT["create_contact"], (nombre, email, celular,comuna_id, current_date))
+    cursor.exexute(QUERY_DICT["create_contact"], (nombre, email, celular, comuna_id, current_date))
     conn.commit()
 
 def add_device(contacto_id, nombre, descripcion, tipo, anos_uso, estado):
@@ -46,9 +45,9 @@ def add_file(ruta_archivo, nombre_archivo, dispositivo_id):
     cursor.execute(QUERY_DICT["add_file", (ruta_archivo, nombre_archivo, dispositivo_id)])
     conn.commit()
 
-def get_id_by_comuna(nombre):
+def get_comuna_by_id(id_comuna):
     conn = get_conn()
     cursor = conn.cursor()
-    cursor.execute(QUERY_DICT["get_id_by_comuna", (nombre,)])
+    cursor.execute(QUERY_DICT["get_comuna_by_id", (id_comuna,)])
     id = cursor.fetchone()
     return id
