@@ -463,7 +463,7 @@ const poblarTipos = (selectId) => {
 	let tipoSelect = document.getElementById(selectId);
 	for (const tipo of tipos){
 		let option = document.createElement("option");
-		option.value = tipo;
+		option.value = tipo.toLowerCase();
 		option.text = tipo;
 		tipoSelect.appendChild(option)
 	}
@@ -473,7 +473,7 @@ const poblarEstados = (selectId) => {
 	let estadoSelect = document.getElementById(selectId);
 	for (const estado of dev_status){
 		let option = document.createElement("option");
-		option.value = estado;
+		option.value = estado.toLowerCase();
 		option.text = estado;
 		estadoSelect.appendChild(option)
 	}

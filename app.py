@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from database import db
 from utils.validations import validate_contact_info
 
@@ -14,16 +14,32 @@ def agregar_donacion():
         c_name = request.form.get("nombre")
         c_email = request.form.get("email")
         c_celular = request.form.get("phone")
-        c_comuna_id = request.form.get("select_comuna")
-        error = ""
+        c_comuna_id = request.form.get("select-comuna")
+
         if validate_contact_info(c_name, c_email, c_celular, c_comuna_id):
-            db.create_contact(c_name, c_email, c_celular, c_comuna_id)
-            return render_template('index.html')    
+            #Loop secciones Dispositivo
+            devices = []
+            for key in request.form:
+                if "nombre-dispositivo" in key:
+                    section_num = key.split("nombre-dispositivo")[1] #Nos retorna el numero de seccion
+                    device_info = {
+                        "nombre": request.form.get(f"nombre-dispositivo{section_num}"),
+                        "descripcion": request.form.get(f"descripcion-dispositivo{section_num}"),
+                        "tipo": request.form.get(f"select-tipo{section_num}"),
+                        "anos": request.form.get(f"anos-dispositivo{section_num}"),
+                        "estado": request.form.get(f"select-estado{section_num}")
+                    }
+                    devices.append(device_info)
+            c_id=db.create_contact(c_name, c_email, c_celular, c_comuna_id)
+            for device in devices:
+                db.add_device(c_id, device["nombre"], device["descripcion"], device["tipo"], device["anos"], device["estado"])
+            #Agregar mensaje de exito
+            return redirect(url_for('home_page'))   
         else:
-            error += "Los campos ingresados son invalidos"
-        return render_template('agregar-donacion.html', error = error)
+            #Agregar mensaje de error dejando el formulario intacto
+            return render_template('/agregar-donacion.html')
     elif request.method =="GET":
-        return render_template('agregar-donacion.html')
+        return render_template('/agregar-donacion.html')
 
 @app.route('/ver-dispositivos')
 def ver_dispositivos():

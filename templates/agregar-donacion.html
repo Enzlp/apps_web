@@ -6,7 +6,7 @@
 	<title>Agregar Donacion</title>
     <link rel="stylesheet" type="text/css" href="../static/css/style.css">
     <link rel="icon" type="image/x-icon" href="../static/media/chip-svg.svg">
-    
+ 
 </head>
 <body class = "body-agregar">
     <div >
@@ -47,7 +47,19 @@
             <button id="submit-btn" type="button">Publicar esta donación</button>
 
         </form>
+        <div id = "confirm" style="text-align: center;" hidden>
+            <h1>¿Confirma que desea publicar esta donación?</h1>
+            <div class="home-buttons d-flex justify-content-center" style="padding: 20px;">
+                <button id = "confirm-btn" type="button">Si, Confirmar</button>
+                <button type="button">Ver Dispositivos</button>
+            </div>
+        </div>
 	</div>
+    <script>
+        document.getElementById("confirm-btn").addEventListener("click", () => {
+            document.forms["agregarDonacion"].submit(); // Submit the form when confirmed
+        });
+    </script>
     <script src="../static/js/select.js"></script>
     <script src="../static/js/add-elements.js"></script>
     <script src="../static/js/validation.js"></script>
