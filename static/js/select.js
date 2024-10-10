@@ -368,11 +368,6 @@ const comunas = {
 	"16": ["Cobquecura", "Trehuaco", "Portezuelo", "Coelemu", "Ranquil","Ñiquen","Chillan", "Chillan Viejo", "Bulnes", "Coihueco", "El Carmen", "Ninhue", "Pemuco", "Pinto", "Quillon", "Quirihue", "San Carlos", "San Fabian", "San Ignacio", "San Nicolas", "Yungay"],
 };
 
-
-
-
-console.log(find());
-
 const regiones = [
     "Tarapacá",
     "Antofagasta",
