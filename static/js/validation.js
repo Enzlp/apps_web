@@ -194,66 +194,11 @@ const validateForm = () =>{
 		validBox.hidden = false;
 	} else {
 		myForm.style.display = "none";
+		validBox.style.backgroundColor = "";
+	    validBox.style.borderLeftColor = "";
 		validListElem.textContent = "";
 		let confirmDiv = document.getElementById("confirm");
 		confirmDiv.hidden = false;
-
-
-
-
-
-
-		// establecer mensaje de éxito
-	    //validMsgElem.innerText = "¿Confirma que desea publicar esta donación?";
-	    //validListElem.textContent = "";
-
-	    // aplicar estilos de éxito
-	    //validBox.style.backgroundColor = "#ddffdd";
-	    //validBox.style.borderLeftColor = "#4CAF50";
-
-
-	    //Boton pagina principal
-	    //let goHomeBtn = document.createElement("button");
-	    //goHomeBtn.hidden = true;
-	    //goHomeBtn.innerText = "Volver a la Página Principal";
-	    //goHomeBtn.style.marginRight = "15px";
-	    
-
-	    // Agregar botones para enviar el formulario o volver
-	    //let submitButton = document.createElement("button");
-	    //submitButton.type = "submit";
-	    //submitButton.innerText = "Sí, confirmo";
-	    //submitButton.style.marginRight = "8px";
-
-	    //submitButton.addEventListener("click", () => {
-	      	//Volvemos pagina principal index.html
-	    //	validMsgElem.innerText = "Hemos recibido la información de su donación. Muchas gracias.";
-	    //	goHomeBtn.hidden = false;
-	    //	submitButton.hidden = true;
-	    //	backButton.hidden = true;
-	    //});
-
-	    //let backButton = document.createElement("button");
-	    //backButton.innerText = "No, quiero volver al formulario";
-	    //backButton.style.marginLeft = "20px";
-
-	    //backButton.addEventListener("click", () => {
-	      // Mostrar el formulario nuevamente
-	    //  myForm.style.display = "block";
-	    //  validBox.hidden = true;
-	    //});
-
-
-	    //goHomeBtn.addEventListener("click", () =>{
-	    //	window.location.href = "../";
-	    //});
-
-	    //validListElem.appendChild(submitButton);
-	    //validListElem.appendChild(backButton);
-	    //validListElem.appendChild(goHomeBtn);
-
-	    // hacer visible el mensaje de validación
-	    //validBox.hidden = false;
 	}
 };
 

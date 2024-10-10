@@ -3,5 +3,6 @@
     "add_device" : "INSERT INTO `tarea2`.`dispositivo` (contacto_id, nombre, descripcion, tipo, anos_uso, estado) VALUES (%s,%s,%s,%s,%s,%s);",
     "add_file" : "INSERT INTO `tarea2`.`archivo` (ruta_archivo, nombre_archivo, dispositivo_id) VALUES (%s,%s,%s);",
     "get_comuna_by_id": "SELECT `tarea2`.`nombre` FROM comuna WHERE id = %s; ",
-    "last_added": "SELECT MAX(id) AS last_id FROM `tarea2`.`contacto`;"  
+    "last_contact_added": "SELECT MAX(id) AS last_id FROM `tarea2`.`contacto`;" ,
+    "last_device_added": "SELECT MAX(id) AS last_id FROM `tarea2`.`dispositivo`;"
 }

@@ -5,6 +5,12 @@ def validate_contact_info(nombre, email, phone, comuna):
     #valid_res = validate_contact_name(nombre) and validate_contact_email(email) and validate_contact_phone(phone) and validate_comuna(comuna)
     return True
 
+def validate_files(file_list):
+    return True
+
+def validate_device(device):
+    return True
+
 def validate_contact_name(nombre):
     if not nombre:
         return False

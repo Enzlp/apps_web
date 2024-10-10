@@ -32,7 +32,7 @@ def create_contact(nombre, email, celular, comuna_id):
     current_date = datetime.date.today()
     cursor.execute(QUERY_DICT["create_contact"], (nombre, email, celular, comuna_id, current_date))
     conn.commit()
-    cursor.execute(QUERY_DICT["last_added"]) #Darme el id recien creado
+    cursor.execute(QUERY_DICT["last_contact_added"]) #Darme el id recien creado
     new_id = cursor.fetchone()[0]
     #Cerrar conexion
     cursor.close()
@@ -44,14 +44,17 @@ def add_device(contacto_id, nombre, descripcion, tipo, anos_uso, estado):
     cursor = conn.cursor()
     cursor.execute(QUERY_DICT["add_device"], (contacto_id, nombre, descripcion, tipo, anos_uso, estado))
     conn.commit()
+    cursor.execute(QUERY_DICT["last_device_added"])
+    new_id = cursor.fetchone()[0]
     #Cerrar conexion
     cursor.close()
     conn.close()
+    return new_id()
 
 def add_file(ruta_archivo, nombre_archivo, dispositivo_id):
     conn = get_conn()
     cursor = conn.cursor()
-    cursor.execute(QUERY_DICT["add_file", (ruta_archivo, nombre_archivo, dispositivo_id)])
+    cursor.execute(QUERY_DICT["add_file"], (ruta_archivo, nombre_archivo, dispositivo_id))
     conn.commit()
     #Cerrar conexion
     cursor.close()
