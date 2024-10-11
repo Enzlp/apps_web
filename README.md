@@ -1,14 +1,6 @@
 # Desarrollo de aplicaciones web
 
-## Tarea 1
-La tarea posee 4 carpetas, donde js es la carpeta con los archivos js que hacen la lógica interna. La Carpeta media posee los archivos multimedias que se usaron en el desarrollo de la página, la carpeta view están los archivos html donde de las vistas pedidas y en la carpeta style esta el archivo style con el código css usado. Además se uso bootstrap para poder simplificar el diseño de algunos elementos. Todos los archivos se entregarán através de un zip.
+## Tarea 2
+La tarea 2 posee una estructura en base al framework de FLask. Para poder usar la aplicaion hace falta ejecutar el archivo app.py. Dentro de esta hay un metodo para cada uno de los archivos de la carpeta templates, excepto por confirmation.html.
 
-
-### index.html
-Página principal posee dos botones para poder ir a las páginas de ver dispositivos y agregar donaciones.
-### agregar-donacion.html
-Archivo con el formulario para ingresar los datos de la donación, importante notar que en el validador html aparece un warning relacionado a el popup usado para mostrar los campos faltantes, ya que parte sin ningún valor pero después será válidado dinamincamente, por lo que finalmente se ignoró
-### informacion-dispositivo.html
-Informacion de dispositivos, mismo problema que en agregar-donacion.
-### ver-dispositivos
-Lista de dispositivos ingresados.
+Dentro de utils se encontrará las validaciones de entradas y sanitaciones correspondientes. Dentro de la carpeta static, se podra ver las carpetas de js, css, media (imagenes para el sitio no relacionadas a la base de datos) y la carpeta de uploads donde se cargarán las imagenes correspondientes. Dentro de la carpeta database, se encontrarán los archivos sql para poder crear la base de datos, además de un archivo db con las querys a la base, para su uso dentro de app.py. Además el archivo crear_user.sql crea un usuario especial para que el sistema pueda conectar con la base. Agregar, que para poder funcionar el usuario, a veces se producía un error de autentificacion, por lo que le garantize permisos totales al usuario creado, lo que en la práctica no debería hacerse. Es por esto que lo deje comentado.

@@ -269,6 +269,7 @@ tbody tr {
 
 .device-section{
     padding:20px;
+    width: 80%;
 
 }
 .comment-date{
@@ -279,4 +280,21 @@ tbody tr {
 
 .custom-item{
     padding:10px;
+}
+
+
+.error {
+    background-color: #ffdddd;
+    color: #f44336;
+    border: 1px solid #f44336;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.success {
+    background-color: #ddffdd;
+    color: #4CAF50;
+    border: 1px solid #4CAF50;
+    padding: 10px;
+    margin-bottom: 10px;
 }

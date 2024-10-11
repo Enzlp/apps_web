@@ -2,7 +2,14 @@
     "create_contact" : "INSERT INTO `tarea2`.`contacto` (nombre, email, celular, comuna_id, fecha_creacion) VALUES (%s, %s, %s, %s, %s);",
     "add_device" : "INSERT INTO `tarea2`.`dispositivo` (contacto_id, nombre, descripcion, tipo, anos_uso, estado) VALUES (%s,%s,%s,%s,%s,%s);",
     "add_file" : "INSERT INTO `tarea2`.`archivo` (ruta_archivo, nombre_archivo, dispositivo_id) VALUES (%s,%s,%s);",
-    "get_comuna_by_id": "SELECT `tarea2`.`nombre` FROM comuna WHERE id = %s; ",
+    "get_comuna_by_id": "SELECT * FROM `tarea2`.`comuna` WHERE id = %s; ",
     "last_contact_added": "SELECT MAX(id) AS last_id FROM `tarea2`.`contacto`;" ,
-    "last_device_added": "SELECT MAX(id) AS last_id FROM `tarea2`.`dispositivo`;"
+    "last_device_added": "SELECT MAX(id) AS last_id FROM `tarea2`.`dispositivo`;",
+    "get_device_page": "SELECT * FROM `tarea2`.`dispositivo` ORDER BY id DESC LIMIT 5 OFFSET %s;",
+    "get_contacto_by_id": "SELECT * FROM `tarea2`.`contacto` WHERE id = %s;",
+    "get_archivo_by_dispositivo_id": "SELECT * FROM `tarea2`.`archivo` WHERE dispositivo_id = %s;",
+    "get_device_by_id": "SELECT * FROM `tarea2`.`dispositivo` WHERE id = %s; ",
+    "get_region_by_id": "SELECT * FROM `tarea2`.`region` WHERE id = %s;",
+    "count_devices": "SELECT COUNT(*) FROM `tarea2`.`dispositivo`;"
+
 }

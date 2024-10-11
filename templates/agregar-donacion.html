@@ -13,6 +13,22 @@
         <button id="corner-btn" type="button" onclick="window.location.href='/'">Home</button>
     </div>
 	<div class = "main-container">
+        <!-- Mensaje flash de error o exito-->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div id="flash-messages" style="text-align: center; margin-bottom: 20px;">
+                    <ul>
+                        {% for category, message in messages %}
+                            <ul class="{{ category }}">{{ message }}
+                            {% for msg in error%}
+                                <ul>- {{ msg }}</ul>
+                            {% endfor %}
+                            </ul>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
 		<div id="val-box" hidden>
             <h2 id="val-msg" ></h2>
             <ul id="val-list"></ul>
@@ -63,5 +79,8 @@
     <script src="../static/js/select.js"></script>
     <script src="../static/js/add-elements.js"></script>
     <script src="../static/js/validation.js"></script>
+    <script src="../static/js/flash-messages.js">
+        hideFlashMessages(5000);
+    </script>
 </body>
 </html>

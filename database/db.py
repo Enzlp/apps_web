@@ -49,7 +49,7 @@ def add_device(contacto_id, nombre, descripcion, tipo, anos_uso, estado):
     #Cerrar conexion
     cursor.close()
     conn.close()
-    return new_id()
+    return new_id
 
 def add_file(ruta_archivo, nombre_archivo, dispositivo_id):
     conn = get_conn()
@@ -63,9 +63,70 @@ def add_file(ruta_archivo, nombre_archivo, dispositivo_id):
 def get_comuna_by_id(id_comuna):
     conn = get_conn()
     cursor = conn.cursor()
-    cursor.execute(QUERY_DICT["get_comuna_by_id", (id_comuna,)])
-    id = cursor.fetchone()
+    cursor.execute(QUERY_DICT["get_comuna_by_id"], (id_comuna))
+    comuna = cursor.fetchone()
     #Cerrar conexion
     cursor.close()
     conn.close()
-    return id
+    return comuna
+
+def get_contacto_by_id(id):
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_contacto_by_id"], (id))
+    contacto = cursor.fetchone()
+    #Cerrar conexion
+    cursor.close()
+    conn.close()
+    return contacto
+
+def get_archivo_by_dispositivo_id(id):
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_archivo_by_dispositivo_id"], (id))
+    archivos = cursor.fetchall()
+    #Cerrar conexion
+    cursor.close()
+    conn.close()
+    return archivos
+
+def get_device_by_id(id):
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_device_by_id"], (id))
+    device = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return device
+
+def get_region_by_id(id):
+    conn = get_conn()
+    cursor = conn.cursor()    
+    cursor.execute(QUERY_DICT["get_region_by_id"], (id))
+    region = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return region
+
+def get_count_devices():
+    conn = get_conn()
+    cursor = conn.cursor()    
+    cursor.execute(QUERY_DICT["count_devices"], ())
+    count = cursor.fetchone()[0]
+    cursor.close()
+    conn.close()
+    return count
+
+#Complex dc-related queries
+def get_device_page(page_num):
+    offset = (page_num-1) * 5 #Partimos por pagina 1 y no 0
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_device_page"], (offset))
+    devices = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return devices
+
+    
+

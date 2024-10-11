@@ -4,49 +4,57 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Información dispositivos</title>
-	<link rel="stylesheet" type="text/css" href="../style/style.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
 </head>
 <body class="information-body">
     <div>
-        <button id="corner-btn" type="button">Home</button>
+        <button id="corner-btn" type="button" onclick="window.location.href='/'">Home</button>
     </div>
-    <section class="device-section" id="dispositivo-1" hidden>
+    {% if device_info %}
+    <section class="device-section" id="dispositivo-info" >
         <div>
-            <h2>Informacion de contacto</h2>
+            <h1 style="text-align: center;">INFORMACION DE CONTACTO</h1>
             <br>
-            <p><strong>Nombre:</strong> Juan Carlos Bodoque</p>
-            <p><strong>Email:</strong> juan.carlos@gmail.com</p>
-            <p><strong>Teléfono:</strong> +56 9 1234 5678</p>
-            <p><strong>Comuna:</strong> Providencia</p>
-            <p><strong>Región:</strong> Metropolitana</p>
+            <p><strong>Nombre:</strong> {{device_info.nombre_contacto}}</p>
+            <p><strong>Email:</strong> {{device_info.contacto_email}}</p>
+            <p><strong>Teléfono:</strong> {{device_info.celular_contacto}}</p>
+            <p><strong>Comuna:</strong> {{device_info.comuna}}</p>
+            <p><strong>Región:</strong> {{device_info.region}}</p>
             <br>
             <h2>Información del dispositivo</h2>
             <br>
-            <p><strong>Nombre:</strong> Lenovo Tab P11</p>
-            <p><strong>Tipo:</strong> Tablet</p>
-            <p><strong>Estado:</strong> Funciona Perfecto</p>
-            <p><strong>Años de Uso:</strong> 2</p>
+            <p><strong>Nombre:</strong>{{device_info.nombre_dev}}</p>
+            <p><strong>Tipo:</strong> {{device_info.tipo}}</p>
+            <p><strong>Estado:</strong> {{device_info.estado}}</p>
+            <p><strong>Años de Uso:</strong>{{device_info.anos_uso}}</p>
+            {% if device_info.descripcion%}
+            <p><strong>Descripcion:</strong>{{device_info.descripcion}}</p>
+            {% endif%}
             <br>
             <h2>Fotos</h2>
-            <img class="section-img section-img-small" alt="image not loading" src="../media/lenovo.jpg" onclick=changeImgSize(1)>
+
+            {% for foto in device_info.archivos %}
+            <img class="section-img section-img-small" alt="image not loading" src="{{ foto }}" onclick="changeImgSize(1)">
+            {% endfor %}
+
             <div class="comment-section">
                 <h2>Comentarios</h2>
                 <hr>
                 <ul  class="comment-list">
                     <li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
+					    <img src="../static/media/user.png" alt="" width="20" height="20">
 					    <strong>Maria_78:</strong>
 					    <p class="comment-date">hace 1 mes</p>
 					    <p>¿Qué versión de Android tiene?</p>
 					</li>
 					<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
+					    <img src="../static/media/user.png" alt="" width="20" height="20">
 					    <strong>Juanito23:</strong>
 					    <p class="comment-date">hace 3 semanas</p>
 					    <p>¿La batería todavía tiene buena duración?</p>
 					</li>
 					<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
+					    <img src="../static/media/user.png" alt="" width="20" height="20">
 					    <strong>ClaudiaR:</strong>
 					    <p class="comment-date">hace 1 semana</p>
 					    <p>¿Algún problema con el rendimiento?</p>
@@ -61,253 +69,14 @@
                     <input type="text" name="nombre-comentarista" id="nombre-comentarista1" minlength="3" maxlength="80" size="5" required>
                 </div>
                 <form name = "comment-form-1">
-                    <textarea placeholder='Agregar comentario' name="comment" id="comentario-1" rows="4" cols="50" required minlength="3" maxlength="80"></textarea>
+                    <textarea placeholder='Agregar comentario' name="comment" id="comentario-1" rows="4" cols="205" required minlength="3" maxlength="80"></textarea>
                     <br>
                     <button type="button" class="send-comment" onclick=validateCommentSection(1)>Agregar comentario</button>
                 </form>
             </div>
         </div>
     </section>
-
-    <section class="device-section" id="dispositivo-2" hidden>
-        <div>
-            <h2>Informacion de contacto</h2>
-            <br>
-            <p><strong>Nombre:</strong> Tulio Triviño</p>
-            <p><strong>Email:</strong> titirilquen@31minutos.cl</p>
-            <p><strong>Teléfono:</strong> +56 9 2345 5678</p>
-            <p><strong>Comuna:</strong> Las Condes</p>
-            <p><strong>Región:</strong> Metropolitana</p>
-            <br>
-            <h2>Información del dispositivo</h2>
-            <br>
-            <p><strong>Nombre:</strong> Ipad MIni 1era Generación</p>
-            <p><strong>Tipo:</strong> Tablet</p>
-            <p><strong>Estado:</strong> No Funciona</p>
-            <p><strong>Años de Uso:</strong> 8</p>
-            <br>
-            <h2>Fotos</h2>
-            <img class="section-img section-img-small" alt="image not loading" src="../media/ipadmini.jpg" onclick=changeImgSize(2)>
-            <div class="comment-section">
-                <h2>Comentarios</h2>
-                <hr>
-
-                <ul class="comment-list">
-                    <li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
-					    <strong>Pedro_23:</strong>
-					    <p class="comment-date">hace 1 mes</p>
-					    <p>¿El dispositivo aún tiene garantía?</p>
-					</li>
-					<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
-					    <strong>LauraR:</strong>
-					    <p class="comment-date">hace 2 semanas</p>
-					    <p>¿Se pueden instalar aplicaciones nuevas?</p>
-					</li>
-					<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
-					    <strong>Tomás_89:</strong>
-					    <p class="comment-date">hace 1 semana</p>
-					    <p>¿Se puede reparar fácilmente?</p>
-					</li>
-
-                </ul>
-                <div id="val-box-2" hidden>
-		            <h2 id="val-msg-2" ></h2>
-				</div>
-                <div class="d-flex" id = "nombre-comentario-2">
-                    <label for="nombre-comentarista2">Nombre:</label>
-                    <input type="text" name="nombre-comentarista" id="nombre-comentarista2" minlength="3" maxlength="80" size="5" required>
-                </div>
-                <form name = "comment-form-2">
-                    <textarea placeholder='Agregar comentario' name="comment" id="comentario-2" rows="4" cols="50" required minlength="3" maxlength="80"></textarea>
-                    <br>
-                    <button type="button" class="send-comment" onclick=validateCommentSection(2)>Agregar comentario</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <section class="device-section" id="dispositivo-3" hidden>
-        <div>
-            <h2>Informacion de contacto</h2>
-            <br>
-            <p><strong>Nombre:</strong> Arturo Saldías</p>
-            <p><strong>Email:</strong> arturito123@hotmail.com</p>
-            <p><strong>Teléfono:</strong> +56 9 1313 1313</p>
-            <p><strong>Comuna:</strong> Iquique</p>
-            <p><strong>Región:</strong> Tarapacá</p>
-            <br>
-            <h2>Información del dispositivo</h2>
-            <br>
-            <p><strong>Nombre:</strong> JBL Tune 520BT</p>
-            <p><strong>Tipo:</strong> Audífonos</p>
-            <p><strong>Estado:</strong> Funciona a Medias</p>
-            <p><strong>Años de Uso:</strong> 5</p>
-            <br>
-            <h2>Fotos</h2>
-            <img class="section-img section-img-small" alt="image not loading" src="../media/jbltune.jpg" onclick=changeImgSize(3)>
-            <div class="comment-section">
-                <h2>Comentarios</h2>
-                <hr>
-                <ul class="comment-list">
-                   	<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
-					    <strong>Sofia_12:</strong>
-					    <p class="comment-date">hace 1 mes</p>
-					    <p>¿Cuánto tiempo dura la batería?</p>
-					</li>
-					<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
-					    <strong>Andrés_56:</strong>
-					    <p class="comment-date">hace 3 semanas</p>
-					    <p>¿Viene con caja original?</p>
-					</li>
-					<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
-					    <strong>Viviana_04:</strong>
-					    <p class="comment-date">hace 2 semanas</p>
-					    <p>¿Qué tan cómodo es para usarlo?</p>
-					</li>
-
-                </ul>
-                <div id="val-box-3" hidden>
-		            <h2 id="val-msg-3" ></h2>
-				</div>
-                <div class="d-flex" id = "nombre-comentario-3">
-                    <label for="nombre-comentarista3">Nombre:</label>
-                    <input type="text" name="nombre-comentarista" id="nombre-comentarista3" minlength="3" maxlength="80" size="5" required>
-                </div>
-                <form name = "comment-form-3">
-                    <textarea placeholder='Agregar comentario' name="comment" id="comentario-3" rows="4" cols="50" required minlength="3" maxlength="80"></textarea>
-                    <br>
-                    <button type="button" class="send-comment" onclick=validateCommentSection(3)>Agregar comentario</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <section class="device-section" id="dispositivo-4" hidden>
-        <div>
-            <h2>Informacion de contacto</h2>
-            <br>
-            <p><strong>Nombre:</strong> Roberto Bolaños</p>
-            <p><strong>Email:</strong> roberto2234@yahoo.com</p>
-            <p><strong>Teléfono:</strong> No Hay Datos</p>
-            <p><strong>Comuna:</strong> Negrete</p>
-            <p><strong>Región:</strong> Bío Bío</p>
-            <br>
-            <h2>Información del dispositivo</h2>
-            <br>
-            <p><strong>Nombre:</strong> Logitech G304 Lightspeed</p>
-            <p><strong>Tipo:</strong> Mouse</p>
-            <p><strong>Estado:</strong> Funciona Perfecto</p>
-            <p><strong>Años de Uso:</strong> 1</p>
-            <br>
-            <h2>Fotos</h2>
-            <img class="section-img section-img-small" alt="image not loading" src="../media/logitechg304.jpg" onclick=changeImgSize(4)>
-            <div class="comment-section">
-                <h2>Comentarios</h2>
-                <hr>
-                <ul  class="comment-list">
-					<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
-					    <strong>Mario_88:</strong>
-					    <p class="comment-date">hace 1 mes</p>
-					    <p>¿Tiene algún problema con los botones?</p>
-					</li>
-					<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
-					    <strong>Andrea_35:</strong>
-					    <p class="comment-date">hace 2 semanas</p>
-					    <p>¿Es compatible con sistemas operativos antiguos?</p>
-					</li>
-					<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
-					    <strong>Jorge_77:</strong>
-					    <p class="comment-date">hace 1 semana</p>
-					    <p>¿Cuánto tiempo dura la batería con uso constante?</p>
-					</li>
-
-                </ul>
-                <br>
-                <div id="val-box-4" hidden>
-		            <h2 id="val-msg-4" ></h2>
-				</div>
-                <div class="d-flex" id = "nombre-comentario-4">
-                    <label for="nombre-comentarista4">Nombre:</label>
-                    <input type="text" name="nombre-comentarista" id="nombre-comentarista4" minlength="3" maxlength="80" size="5" required>
-                </div>
-                <form name = "comment-form-4">
-                    <textarea placeholder='Agregar comentario' name="comment" id="comentario-4" rows="4" cols="50" required minlength="3" maxlength="80"></textarea>
-                    <br>
-                    <button type="button" class="send-comment" onclick=validateCommentSection(4)>Agregar comentario</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <section class="device-section" id="dispositivo-5" hidden>
-        <div>
-            <h2>Informacion de contacto</h2>
-            <br>
-            <p><strong>Nombre:</strong> Luis Slimming</p>
-            <p><strong>Email:</strong> doncomedia@gmail.com</p>
-            <p><strong>Teléfono:</strong> +56 9 2223 8697</p>
-            <p><strong>Comuna:</strong> Pemuco</p>
-            <p><strong>Región:</strong> Ñuble</p>
-            <br>
-            <h2>Información del dispositivo</h2>
-            <br>
-            <p><strong>Nombre:</strong> Impresora Canon G-2110</p>
-            <p><strong>Tipo:</strong> Impresora</p>
-            <p><strong>Estado:</strong> Funciona a medias</p>
-            <p><strong>Años de Uso:</strong> 10</p>
-            <br>
-            <h2>Fotos</h2>
-            <img class="section-img section-img-small" alt="image not loading" src="../media/impresora.jpg" onclick=changeImgSize(5)>
-            <div class="comment-section" >
-                <h2>Comentarios</h2>
-                <hr>
-                <ul  class="comment-list">
-					<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
-					    <strong>Ricardo_92:</strong>
-					    <p class="comment-date">hace 1 mes</p>
-					    <p>¿Funciona bien con papel fotográfico?</p>
-					</li>
-					<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
-					    <strong>Verónica_47:</strong>
-					    <p class="comment-date">hace 2 semanas</p>
-					    <p>¿Cuál es el costo del mantenimiento?</p>
-					</li>
-					<li class="custom-item">
-					    <img src="../media/user.png" alt="" width="20" height="20">
-					    <strong>Fernando_26:</strong>
-					    <p class="comment-date">hace 1 semana</p>
-					    <p>¿Hay disponibilidad de repuestos?</p>
-					</li>
-                </ul>
-                <br>
-                <div id="val-box-5" hidden>
-		            <h2 id="val-msg-5" ></h2>
-				</div>
-                <div class="d-flex" id = "nombre-comentario-5">
-                    <label for="nombre-comentarista5">Nombre:</label>
-                    <input type="text" name="nombre-comentarista" id="nombre-comentarista5" minlength="3" maxlength="80" size="5" required>
-                </div>
-                <form name = "comment-form-5">
-                    <textarea placeholder='Agregar comentario' name="comment" id="comentario-5" rows="4" cols="50" required minlength="3" maxlength="80"></textarea>
-                    <br>
-                    <button type="button" class="send-comment" onclick=validateCommentSection(5)>Agregar comentario</button>
-                </form>
-            </div>
-        </div>
-    </section>
-    <script src="../js/logic.js"></script>
-    <script src="../js/show-info.js"></script>
-    <script src="../js/validation.js"> </script>
+    {% endif %}
+    <script src="../static/js/validation.js"> </script>
 </body>
 </html>

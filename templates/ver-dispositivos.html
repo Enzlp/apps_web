@@ -7,8 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
 </head>
 <body class= "ver-dispositivos-body">
-	<div >
-        <button id="corner-btn" type="button" >Home</button>
+	<div>
+        <button id="corner-btn" type="button" onclick="window.location.href='/'">Home</button>
     </div>
 	<div class = "table-container">
 		<table>
@@ -22,53 +22,31 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr onclick="showDevice(1)">
-					<td>Tablet</td>
-					<td>Lenovo Tab P11</td>
-					<td>Funciona Perfecto</td>
-					<td>Providencia</td>
-					<td><img class = "table-img" alt="image not loading" src="../static/media/lenovo.jpg"></td>
-				</tr>
-			</tbody>
-			<tbody>
-				<tr onclick="showDevice(2)">
-					<td>Tablet</td>
-					<td>Ipad Mini 1era generacion</td>
-					<td>No Funciona</td>
-					<td>Las Condes</td>
-					<td><img class = "table-img" alt="image not loading" src="../static/media/ipadmini.jpg"></td>
-				</tr>
-			</tbody>
-			<tbody>
-				<tr onclick="showDevice(3)">
-					<td>Audífonos</td>
-					<td>JBL Tune 520BT</td>
-					<td>Funciona a medias</td>
-					<td>Iquique</td>
-					<td><img class = "table-img" alt="image not loading" src="../static/media/jbltune.jpg"></td>
-				</tr>
-			</tbody>
-			<tbody>
-				<tr onclick="showDevice(4)">
-					<td>Mouse</td>
-					<td>Logitech G304 Lightspeed</td>
-					<td>Funciona Perfecto</td>
-					<td>Negrete</td>
-					<td><img class = "table-img" alt="image not loading" src="../static/media/logitechg304.jpg"></td>
-				</tr>
-			</tbody>
-			<tbody>
-				<tr onclick="showDevice(5)">
-					<td>Impresora</td>
-					<td>Impresora Canon G-2110</td>
-					<td>Funciona a medias</td>
-					<td>Pemuco</td>
-					<td><img class = "table-img" alt="image not loading" src="../static/media/impresora.jpg"></td>
-				</tr>
+			{% if data %}
+				{% for dev in data%}
+						<tr>
+							<td><a href="{{ url_for('info_disp', id=dev.id) }}">{{ dev.tipo }}</a></td>
+							<td><a href="{{ url_for('info_disp',id=dev.id) }}">{{ dev.nombre }}</a></td>
+							<td><a href="{{ url_for('info_disp',id=dev.id) }}">{{ dev.estado }}</a></td>
+							<td><a href="{{ url_for('info_disp',id=dev.id) }}">{{ dev.comuna }}</a></td>
+							<td><a href="{{ url_for('info_disp',id=dev.id) }}"><img class = "table-img" alt="image not loading" src="{{dev.ruta_foto}}"></a></td>
+						</tr>
+				{% endfor %}
+			{% endif %}
 			</tbody>
 		</table>
+		
+		<div style="display: flex; justify-content: center; gap: 10px;">
+			{% if pagina != total_pages %}
+			<button id="next-btn" type="button"  onclick="location.href='{{ url_for('ver_dispositivos', pagina=pagina+1) }}'">Siguiente Página</button>
+			{% endif %}
+			{% if pagina > 1 %}
+			<button id="prev-btn" type="button"  onclick="location.href='{{ url_for('ver_dispositivos', pagina=pagina-1) }}'">Página Anterior</button>
+			{% endif %}
+		</div>
+		
+		
 	</div>
-	<script src="../static/js/logic.js"></script>
 	<script src="../static/js/show-info.js"></script>
 </body>
 </html>

@@ -19,6 +19,15 @@
 			</div>
 		</div>
 	</div>
+	{% with messages = get_flashed_messages(with_categories=true) %}
+		{% if messages %}
+			<ul id="flash-messages">
+				{% for category, message in messages %}
+					<li class="{{ category }}">{{ message }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% endwith %}
 	<h1 class = "home-title">Dona tus artículos electronicos!!</h1>
 	<div class="d-flex justify-content-center" style="padding : 20px;">
 		<div>
@@ -30,7 +39,11 @@
 	</div>
 	<div class="home-buttons d-flex justify-content-center" style="padding: 20px;">
    		<button class="btn btn-lg btn-primary" onclick="window.location.href='/agregar_donacion'">Agregar Donación</button>
-    	<button class="btn btn-lg btn-primary" onclick="window.location.href='/ver-dispositivos'">Ver Dispositivos</button>
+		<button class="btn btn-lg btn-primary" onclick="location.href='{{ url_for('ver_dispositivos', pagina=1) }}'">Ver Dispositivos</button>
+
 	</div>
+	<script src="../static/js/flash-messages.js">
+        hideFlashMessages(5000);
+    </script>
 </body>
 </html>
