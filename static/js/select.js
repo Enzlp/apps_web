@@ -1,391 +1,71 @@
-const comunaId = {
-    'Camiña': 10301,
-    'Huara': 10302,
-    'Pozo Almonte': 10303,
-    'Iquique': 10304,
-    'Pica': 10305,
-    'Colchane': 10306,
-    'Alto Hospicio': 10307,
-    'Tocopilla': 20101,
-    'Maria Elena': 20102,
-    'Ollague': 20201,
-    'Calama': 20202,
-    'San Pedro de Atacama': 20203,
-    'Sierra Gorda': 20301,
-    'Mejillones': 20302,
-    'Antofagasta': 20303,
-    'Taltal': 20304,
-    'Diego de Almagro': 30101,
-    'Chañaral': 30102,
-    'Caldera': 30201,
-    'Copiapo': 30202,
-    'Tierra Amarilla': 30203,
-    'Huasco': 30301,
-    'Freirina': 30302,
-    'Vallenar': 30303,
-    'Alto del Carmen': 30304,
-    'La Higuera': 40101,
-    'La Serena': 40102,
-    'Vicuña': 40103,
-    'Paihuano': 40104,
-    'Coquimbo': 40105,
-    'Andacollo': 40106,
-    'Rio Hurtado': 40201,
-    'Ovalle': 40202,
-    'Monte Patria': 40203,
-    'Punitaqui': 40204,
-    'Combarbala': 40205,
-    'Mincha': 40301,
-    'Illapel': 40302,
-    'Salamanca': 40303,
-    'Los Vilos': 40304,
-    'Petorca': 50101,
-    'Cabildo': 50102,
-    'Papudo': 50103,
-    'La Ligua': 50104,
-    'Zapallar': 50105,
-    'Putaendo': 50201,
-    'Santa Maria': 50202,
-    'San Felipe': 50203,
-    'Pencahue': 50204,
-    'Catemu': 50205,
-    'Llay Llay': 50206,
-    'Nogales': 50301,
-    'La Calera': 50302,
-    'Hijuelas': 50303,
-    'La Cruz': 50304,
-    'Quillota': 50305,
-    'Olmue': 50306,
-    'Limache': 50307,
-    'Los Andes': 50401,
-    'Rinconada': 50402,
-    'Calle Larga': 50403,
-    'San Esteban': 50404,
-    'Puchuncavi': 50501,
-    'Quintero': 50502,
-    'Viña del Mar': 50503,
-    'Villa Alemana': 50504,
-    'Quilpue': 50505,
-    'Valparaiso': 50506,
-    'Juan Fernandez': 50507,
-    'Casablanca': 50508,
-    'Concon': 50509,
-    'Isla de Pascua': 50601,
-    'Algarrobo': 50701,
-    'El Quisco': 50702,
-    'El Tabo': 50703,
-    'Cartagena': 50704,
-    'San Antonio': 50705,
-    'Santo Domingo': 50706,
-    'Mostazal': 60101,
-    'Codegua': 60102,
-    'Graneros': 60103,
-    'Machali': 60104,
-    'Rancagua': 60105,
-    'Olivar': 60106,
-    'Doñihue': 60107,
-    'Requinoa': 60108,
-    'Coinco': 60109,
-    'Coltauco': 60110,
-    'Quinta Tilcoco': 60111,
-    'Las Cabras': 60112,
-    'Rengo': 60113,
-    'Peumo': 60114,
-    'Pichidegua': 60115,
-    'Malloa': 60116,
-    'San Vicente': 60117,
-    'Navidad': 60201,
-    'La Estrella': 60202,
-    'Marchigue': 60203,
-    'Pichilemu': 60204,
-    'Litueche': 60205,
-    'Paredones': 60206,
-    'San Fernando': 60301,
-    'Peralillo': 60302,
-    'Placilla': 60303,
-    'Chimbarongo': 60304,
-    'Palmilla': 60305,
-    'Nancagua': 60306,
-    'Santa Cruz': 60307,
-    'Pumanque': 60308,
-    'Chepica': 60309,
-    'Lolol': 60310,
-    'Teno': 70101,
-    'Romeral': 70102,
-    'Rauco': 70103,
-    'Curico': 70104,
-    'Sagrada Familia': 70105,
-    'Hualañe': 70106,
-    'Vichuquen': 70107,
-    'Molina': 70108,
-    'Licanten': 70109,
-    'Rio Claro': 70201,
-    'Curepto': 70202,
-    'Pelarco': 70203,
-    'Talca': 70204,
-    'Pencahue': 70205,
-    'San Clemente': 70206,
-    'Constitucion': 70207,
-    'Maule': 70208,
-    'Empedrado': 70209,
-    'San Rafael': 70210,
-    'San Javier': 70301,
-    'Colbun': 70302,
-    'Villa Alegre': 70303,
-    'Yerbas Buenas': 70304,
-    'Linares': 70305,
-    'Longavi': 70306,
-    'Retiro': 70307,
-    'Parral': 70308,
-    'Chanco': 70401,
-    'Pelluhue': 70402,
-    'Cauquenes': 70403,
-    'Cobquecura': 80101,
-    'Ñiquen': 80102,
-    'San Fabian': 80103,
-    'San Carlos': 80104,
-    'Quirihue': 80105,
-    'Ninhue': 80106,
-    'Trehuaco': 80107,
-    'San Nicolas': 80108,
-    'Coihueco': 80109,
-    'Chillan': 80110,
-    'Portezuelo': 80111,
-    'Pinto': 80112,
-    'Coelemu': 80113,
-    'Bulnes': 80114,
-    'San Ignacio': 80115,
-    'Ranquil': 80116,
-    'Quillon': 80117,
-    'El Carmen': 80118,
-    'Pemuco': 80119,
-    'Yungay': 80120,
-    'Chillan Viejo': 80121,
-    'Tome': 80201,
-    'Florida': 80202,
-    'Penco': 80203,
-    'Talcahuano': 80204,
-    'Concepcion': 80205,
-    'Hualqui': 80206,
-    'Coronel': 80207,
-    'Lota': 80208,
-    'Santa Juana': 80209,
-    'Chiguayante': 80210,
-    'San Pedro de la Paz': 80211,
-    'Hualpen': 80212,
-    'Cabrero': 80301,
-    'Yumbel': 80302,
-    'Tucapel': 80303,
-    'Antuco': 80304,
-    'San Rosendo': 80305,
-    'Laja': 80306,
-    'Quilleco': 80307,
-    'Los Angeles': 80308,
-    'Nacimiento': 80309,
-    'Negrete': 80310,
-    'Santa Barbara': 80311,
-    'Quilaco': 80312,
-    'Mulchen': 80313,
-    'Alto Bio Bio': 80314,
-    'Arauco': 80401,
-    'Curanilahue': 80402,
-    'Los Alamos': 80403,
-    'Lebu': 80404,
-    'Cañete': 80405,
-    'Contulmo': 80406,
-    'Tirua': 80407,
-    'Renaico': 90101,
-    'Angol': 90102,
-    'Collipulli': 90103,
-    'Los Sauces': 90104,
-    'Puren': 90105,
-    'Ercilla': 90106,
-    'Lumaco': 90107,
-    'Victoria': 90108,
-    'Traiguen': 90109,
-    'Curacautin': 90110,
-    'Lonquimay': 90111,
-    'Perquenco': 90201,
-    'Galvarino': 90202,
-    'Lautaro': 90203,
-    'Vilcun': 90204,
-    'Temuco': 90205,
-    'Carahue': 90206,
-    'Melipeuco': 90207,
-    'Nueva Imperial': 90208,
-    'Puerto Saavedra': 90209,
-    'Cunco': 90210,
-    'Freire': 90211,
-    'Pitrufquen': 90212,
-    'Teodoro Schmidt': 90213,
-    'Gorbea': 90214,
-    'Pucon': 90215,
-    'Villarrica': 90216,
-    'Tolten': 90217,
-    'Curarrehue': 90218,
-    'Loncoche': 90219,
-    'Padre Las Casas': 90220,
-    'Cholchol': 90221,
-    'San Pablo': 100201,
-    'San Juan': 100202,
-    'Osorno': 100203,
-    'Puyehue': 100204,
-    'Rio Negro': 100205,
-    'Purranque': 100206,
-    'Puerto Octay': 100207,
-    'Frutillar': 100301,
-    'Fresia': 100302,
-    'Llanquihue': 100303,
-    'Puerto Varas': 100304,
-    'Los Muermos': 100305,
-    'Puerto Montt': 100306,
-    'Maullin': 100307,
-    'Calbuco': 100308,
-    'Cochamo': 100309,
-    'Ancud': 100401,
-    'Quemchi': 100402,
-    'Dalcahue': 100403,
-    'Curaco de Velez': 100404,
-    'Castro': 100405,
-    'Chonchi': 100406,
-    'Queilen': 100407,
-    'Quellon': 100408,
-    'Quinchao': 100409,
-    'Puqueldon': 100410,
-    'Chaiten': 100501,
-    'Futaleufu': 100502,
-    'Palena': 100503,
-    'Hualaihue': 100504,
-    'Guaitecas': 110101,
-    'Cisnes': 110102,
-    'Aysen': 110103,
-    'Coyhaique': 110201,
-    'Lago Verde': 110202,
-    'Rio Ibañez': 110301,
-    'Chile Chico': 110302,
-    'Cochrane': 110401,
-    'Tortel': 110402,
-    "O'Higgins": 110403,
-    'Torres del Paine': 120101,
-    'Puerto Natales': 120102,
-    'Laguna Blanca': 120201,
-    'San Gregorio': 120202,
-    'Rio Verde': 120203,
-    'Punta Arenas': 120204,
-    'Porvenir': 120301,
-    'Primavera': 120302,
-    'Timaukel': 120303,
-    'Antartica': 120401,
-    'Tiltil': 130101,
-    'Colina': 130102,
-    'Lampa': 130103,
-    'Conchali': 130201,
-    'Quilicura': 130202,
-    'Renca': 130203,
-    'Las Condes': 130204,
-    'Pudahuel': 130205,
-    'Quinta Normal': 130206,
-    'Providencia': 130207,
-    'Santiago': 130208,
-    'La Reina': 130209,
-    'Ñuñoa': 130210,
-    'San Miguel': 130211,
-    'Maipú': 130212,
-    'La Cisterna': 130213,
-    'La Florida': 130214,
-    'La Granja': 130215,
-    'Independencia': 130216,
-    'Huechuraba': 130217,
-    'Recoleta': 130218,
-    'Vitacura': 130219,
-    'Lo Barrenechea': 130220,
-    'Macul': 130221,
-    'Peñalolén': 130222,
-    'San Joaquín': 130223,
-    'La Pintana': 130224,
-    'San Ramon': 130225,
-    'El Bosque': 130226,
-    'Pedro Aguirre Cerda': 130227,
-    'Lo Espejo': 130228,
-    'Estacion Central': 130229,
-    'Cerrillos': 130230,
-    'Lo Prado': 130231,
-    'Cerro Navia': 130232,
-    'San José de Maipo': 130301,
-    'Puente Alto': 130302,
-    'Pirque': 130303,
-    'San Bernardo': 130401,
-    'Calera de Tango': 130402,
-    'Buin': 130403,
-    'Paine': 130404,
-    'Peñaflor': 130501,
-    'Talagante': 130502,
-    'El Monte': 130503,
-    'Isla de Maipo': 130504,
-    'Curacavi': 130601,
-    'María Pinto': 130602,
-    'Melipilla': 130603,
-    'San Pedro': 130604,
-    'Alhué': 130605,
-    'Padre Hurtado': 130606,
-    'Lanco': 100101,
-    'Mariquina': 100102,
-    'Panguipulli': 100103,
-    'Mafil': 100104,
-    'Valdivia': 100105,
-    'Los Lagos': 100106,
-    'Corral': 100107,
-    'Paillaco': 100108,
-    'Futrono': 100109,
-    'Lago Ranco': 100110,
-    'La Union': 100111,
-    'Rio Bueno': 100112,
-    'Gral. Lagos': 10101,
-    'Putre': 10102,
-    'Arica': 10201,
-    'Camarones': 10202,
-	'Traiguen': 90109
-};
-
-
-
-const comunas = {
-	"1": ["Iquique", "Alto Hospicio", "Pozo Almonte", "Camiña", "Colchane", "Huara", "Pica"],
-	"2": ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollague", "San Pedro de Atacama", "Tocopilla", "Maria Elena"],
-	"3": ["Copiapo", "Caldera", "Tierra Amarilla", "Chañaral", "Diego de Almagro", "Vallenar", "Alto del Carmen", "Freirina", "Huasco"],
-	"4": ["Mincha","Combarbala","Ovalle","La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paihuano", "Vicuña", "Monte Patria", "Punitaqui", "Rio Hurtado", "Illapel", "Los Vilos", "Salamanca"],
-	"5": ["Cartagena", "Santo Domingo", "Quintero", "Casablanca", "Isla de Pascua", "Algarrobo", "El Quisco", "El Tabo", "Pencahue", "Nogales", "La Calera", "Hijuelas", "La Cruz", "Quillota", "Rinconada", "Calle Larga", "San Esteban", "Puchuncavi", "Juan Fernandez","Catemu", "Zapallar","Papudo","Valparaiso", "Viña del Mar", "Concon", "Quilpue", "Villa Alemana", "Limache", "Olmue", "Petorca", "La Ligua", "Cabildo", "San Antonio", "San Felipe", "Los Andes", "Llay Llay", "Putaendo", "Santa Maria"],
-	"6": ["Mostazal", "Graneros", "Coinco", "Navidad", "Marchigue", "Litueche", "Paredones", "Placilla", "Chimbarongo", "Palmilla", "Nancagua", "Santa Cruz", "Pumanque", "Chepica", "Lolol","Rancagua", "Machali", "Olivar", "Pichidegua", "Pichilemu", "Rengo", "Requinoa", "San Fernando", "San Vicente", "Malloa", "Doñihue", "Coltauco", "La Estrella", "Las Cabras", "Peumo", "Peralillo", "Quinta Tilcoco", "Codegua"],
-	"7": ["Romeral", "Molina", "Licanten", "Rio Claro", "Curepto", "Parral", "Chanco","Talca", "Cauquenes", "Colbun", "Constitucion", "Curico", "Empedrado", "Hualañe", "Linares", "Longavi", "Maule", "Pelarco", "Pelluhue", "Rauco", "Retiro", "San Clemente", "San Javier", "San Rafael", "Sagrada Familia", "Talca", "Teno", "Vichuquen", "Villa Alegre", "Yerbas Buenas"],
-	"8": [ "Florida", "Santa Juana", "Cabrero", "Quilleco", "Quilaco", "Alto Bio Bio", "Arauco", "Curanilahue", "Los Alamos", "Lebu", "Cañete", "Contulmo", "Tirua","Antuco","Concepcion", "Chiguayante", "Hualpen", "Hualqui", "Lota", "Penco", "San Pedro de la Paz", "Talcahuano", "Tome", "Coronel", "Laja", "Los Angeles", "Mulchen", "Nacimiento", "Negrete", "San Rosendo", "Santa Barbara", "Tucapel", "Yumbel", "Angol", "Collipulli", "Curacautin", "Ercilla", "Lonquimay", "Melipeuco",  "Victoria"],
-	"9": ["Padre Las Casas", "Cholchol", "Renaico", "Los Sauces", "Puren", "Lumaco", "Traiguen", "Perquenco", "Galvarino", "Vilcun", "Cunco", "Teodoro Schmidt", "Curarrehue","Temuco", "Angol", "Victoria", "Collipulli", "Curacautin", "Ercilla", "Lonquimay", "Melipeuco", "Pucon", "Villarrica", "Loncoche", "Gorbea", "Lautaro", "Pitrufquen", "Tolten", "Nueva Imperial", "Carahue", "Puerto Saavedra", "Freire"],
-	"10": ["Curaco de Velez", "Chonchi", "Queilen", "San Juan", "Puyehue", "Rio Negro", "Purranque", "Fresia", "Maullin", "Cochamo", "Quemchi", "Quinchao", "Puqueldon", "Puerto Octay","Puerto Montt", "Puerto Varas", "Calbuco", "Castro", "Ancud", "Dalcahue", "Quellon", "Osorno", "Frutillar", "Los Muermos", "Llanquihue", "San Pablo", "Hualaihue", "Chaiten", "Futaleufu", "Palena"],
-	"11": ["Cochrane", "Coyhaique", "Chile Chico", "Aysen", "Cisnes", "Guaitecas", "Lago Verde", "O'Higgins", "Rio Ibañez", "Tortel"],
-	"12": [ "Torres del Paine", "Primavera", "Punta Arenas", "Puerto Natales", "Porvenir", "Laguna Blanca", "Rio Verde", "San Gregorio", "Timaukel", "Antartica"],
-	"13": ["Quinta Normal", "La Cisterna", "Lo Barrenechea", "Lo Espejo", "Puente Alto", "Pirque", "Calera de Tango", "Buin", "Paine", "Peñaflor", "Talagante", "El Monte", "Isla de Maipo", "Curacavi","María Pinto","Melipilla","San Pedro","Alhué","Padre Hurtado","Lampa","Conchali", "Colina","Tiltil","Santiago", "Las Condes", "Providencia", "Ñuñoa", "Vitacura", "La Florida", "Peñalolén", "San Miguel", "San Joaquín", "Macul", "La Reina", "Recoleta", "Independencia", "Cerrillos", "Cerro Navia", "Pudahuel", "Renca", "Quilicura", "Huechuraba", "El Bosque", "San Ramon", "La Pintana", "Lo Prado", "Maipú", "San Bernardo", "Pedro Aguirre Cerda", "Estacion Central", "La Granja", "San José de Maipo"],
-	"14": ["Mafil","Valdivia", "Lanco", "Los Lagos", "Mariquina", "Panguipulli", "Rio Bueno", "Futrono", "La Union", "Corral", "Paillaco", "Lago Ranco"],
-	"15": ["Arica", "Camarones", "Putre", "Gral. Lagos"],
-	"16": ["Cobquecura", "Trehuaco", "Portezuelo", "Coelemu", "Ranquil","Ñiquen","Chillan", "Chillan Viejo", "Bulnes", "Coihueco", "El Carmen", "Ninhue", "Pemuco", "Pinto", "Quillon", "Quirihue", "San Carlos", "San Fabian", "San Ignacio", "San Nicolas", "Yungay"],
-};
-
-const regiones = [
-    "Tarapacá",
-    "Antofagasta",
-    "Atacama",
-    "Coquimbo",
-    "Valparaíso",
-    "O'Higgins",
-    "Maule",
-    "Biobío",
-    "Araucanía",
-    "Los Lagos",
-    "Aysén",
-    "Magallanes",
-    "Región Metropolitana",
-    "Los Ríos",
-    "Arica y Parinacota",
-    "Ñuble"
-];
+const regionesComunas = {
+    "regiones": [
+        {
+        "id": 1, "nombre": "Región de Tarapacá",
+        "comunas": [{"id": 10301, "nombre": "Camiña"}, {"id": 10302, "nombre": "Huara"}, {"id": 10303, "nombre": "Pozo Almonte"}, {"id": 10304, "nombre": "Iquique"}, {"id": 10305, "nombre": "Pica"}, {"id": 10306, "nombre": "Colchane"}, {"id": 10307, "nombre": "Alto Hospicio"}]
+        },
+        {
+        "id": 2, "nombre": "Región de Antofagasta",
+        "comunas": [{"id": 20101, "nombre": "Tocopilla"}, {"id": 20102, "nombre": "Maria Elena"}, {"id": 20201, "nombre": "Ollague"}, {"id": 20202, "nombre": "Calama"}, {"id": 20203, "nombre": "San Pedro Atacama"}, {"id": 20301, "nombre": "Sierra Gorda"}, {"id": 20302, "nombre": "Mejillones"}, {"id": 20303, "nombre": "Antofagasta"}, {"id": 20304, "nombre": "Taltal"}]
+        },
+        {
+        "id": 3, "nombre": "Región de Atacama",
+        "comunas": [{"id": 30101, "nombre": "Diego de Almagro"}, {"id": 30102, "nombre": "Chañaral"}, {"id": 30201, "nombre": "Caldera"}, {"id": 30202, "nombre": "Copiapo"}, {"id": 30203, "nombre": "Tierra Amarilla"}, {"id": 30301, "nombre": "Huasco"}, {"id": 30302, "nombre": "Freirina"}, {"id": 30303, "nombre": "Vallenar"}, {"id": 30304, "nombre": "Alto del Carmen"}]
+        },
+        {
+        "id": 4, "nombre": "Región de Coquimbo ",
+        "comunas": [{"id": 40101, "nombre": "La Higuera"}, {"id": 40102, "nombre": "La Serena"}, {"id": 40103, "nombre": "Vicuña"}, {"id": 40104, "nombre": "Paihuano"}, {"id": 40105, "nombre": "Coquimbo"}, {"id": 40106, "nombre": "Andacollo"}, {"id": 40201, "nombre": "Rio Hurtado"}, {"id": 40202, "nombre": "Ovalle"}, {"id": 40203, "nombre": "Monte Patria"}, {"id": 40204, "nombre": "Punitaqui"}, {"id": 40205, "nombre": "Combarbala"}, {"id": 40301, "nombre": "Mincha"}, {"id": 40302, "nombre": "Illapel"}, {"id": 40303, "nombre": "Salamanca"}, {"id": 40304, "nombre": "Los Vilos"}]
+        },
+        {
+        "id": 5, "nombre": "Región de Valparaíso",
+        "comunas": [{"id": 50101, "nombre": "Petorca"}, {"id": 50102, "nombre": "Cabildo"}, {"id": 50103, "nombre": "Papudo"}, {"id": 50104, "nombre": "La Ligua"}, {"id": 50105, "nombre": "Zapallar"}, {"id": 50201, "nombre": "Putaendo"}, {"id": 50202, "nombre": "Santa Maria"}, {"id": 50203, "nombre": "San Felipe"}, {"id": 50204, "nombre": "Pencahue"}, {"id": 50205, "nombre": "Catemu"}, {"id": 50206, "nombre": "Llay Llay"}, {"id": 50301, "nombre": "Nogales"}, {"id": 50302, "nombre": "La Calera"}, {"id": 50303, "nombre": "Hijuelas"}, {"id": 50304, "nombre": "La Cruz"}, {"id": 50305, "nombre": "Quillota"}, {"id": 50306, "nombre": "Olmue"}, {"id": 50307, "nombre": "Limache"}, {"id": 50401, "nombre": "Los Andes"}, {"id": 50402, "nombre": "Rinconada"}, {"id": 50403, "nombre": "Calle Larga"}, {"id": 50404, "nombre": "San Esteban"}, {"id": 50501, "nombre": "Puchuncavi"}, {"id": 50502, "nombre": "Quintero"}, {"id": 50503, "nombre": "Viña del Mar"}, {"id": 50504, "nombre": "Villa Alemana"}, {"id": 50505, "nombre": "Quilpue"}, {"id": 50506, "nombre": "Valparaiso"}, {"id": 50507, "nombre": "Juan Fernandez"}, {"id": 50508, "nombre": "Casablanca"}, {"id": 50509, "nombre": "Concon"}, {"id": 50601, "nombre": "Isla de Pascua"}, {"id": 50701, "nombre": "Algarrobo"}, {"id": 50702, "nombre": "El Quisco"}, {"id": 50703, "nombre": "El Tabo"}, {"id": 50704, "nombre": "Cartagena"}, {"id": 50705, "nombre": "San Antonio"}, {"id": 50706, "nombre": "Santo Domingo"}]
+        },
+        {
+        "id": 6, "nombre": "Región del Libertador Bernardo Ohiggins",
+        "comunas": [{"id": 60101, "nombre": "Mostazal"}, {"id": 60102, "nombre": "Codegua"}, {"id": 60103, "nombre": "Graneros"}, {"id": 60104, "nombre": "Machali"}, {"id": 60105, "nombre": "Rancagua"}, {"id": 60106, "nombre": "Olivar"}, {"id": 60107, "nombre": "Doñihue"}, {"id": 60108, "nombre": "Requinoa"}, {"id": 60109, "nombre": "Coinco"}, {"id": 60110, "nombre": "Coltauco"}, {"id": 60111, "nombre": "Quinta Tilcoco"}, {"id": 60112, "nombre": "Las Cabras"}, {"id": 60113, "nombre": "Rengo"}, {"id": 60114, "nombre": "Peumo"}, {"id": 60115, "nombre": "Pichidegua"}, {"id": 60116, "nombre": "Malloa"}, {"id": 60117, "nombre": "San Vicente"}, {"id": 60201, "nombre": "Navidad"}, {"id": 60202, "nombre": "La Estrella"}, {"id": 60203, "nombre": "Marchigue"}, {"id": 60204, "nombre": "Pichilemu"}, {"id": 60205, "nombre": "Litueche"}, {"id": 60206, "nombre": "Paredones"}, {"id": 60301, "nombre": "San Fernando"}, {"id": 60302, "nombre": "Peralillo"}, {"id": 60303, "nombre": "Placilla"}, {"id": 60304, "nombre": "Chimbarongo"}, {"id": 60305, "nombre": "Palmilla"}, {"id": 60306, "nombre": "Nancagua"}, {"id": 60307, "nombre": "Santa Cruz"}, {"id": 60308, "nombre": "Pumanque"}, {"id": 60309, "nombre": "Chepica"}, {"id": 60310, "nombre": "Lolol"}]
+        },
+        {
+        "id": 7, "nombre": "Región del Maule",
+        "comunas": [{"id": 70101, "nombre": "Teno"}, {"id": 70102, "nombre": "Romeral"}, {"id": 70103, "nombre": "Rauco"}, {"id": 70104, "nombre": "Curico"}, {"id": 70105, "nombre": "Sagrada Familia"}, {"id": 70106, "nombre": "Hualañe"}, {"id": 70107, "nombre": "Vichuquen"}, {"id": 70108, "nombre": "Molina"}, {"id": 70109, "nombre": "Licanten"}, {"id": 70201, "nombre": "Rio Claro"}, {"id": 70202, "nombre": "Curepto"}, {"id": 70203, "nombre": "Pelarco"}, {"id": 70204, "nombre": "Talca"}, {"id": 70205, "nombre": "Pencahue"}, {"id": 70206, "nombre": "San Clemente"}, {"id": 70207, "nombre": "Constitucion"}, {"id": 70208, "nombre": "Maule"}, {"id": 70209, "nombre": "Empedrado"}, {"id": 70210, "nombre": "San Rafael"}, {"id": 70301, "nombre": "San Javier"}, {"id": 70302, "nombre": "Colbun"}, {"id": 70303, "nombre": "Villa Alegre"}, {"id": 70304, "nombre": "Yerbas Buenas"}, {"id": 70305, "nombre": "Linares"}, {"id": 70306, "nombre": "Longavi"}, {"id": 70307, "nombre": "Retiro"}, {"id": 70308, "nombre": "Parral"}, {"id": 70401, "nombre": "Chanco"}, {"id": 70402, "nombre": "Pelluhue"}, {"id": 70403, "nombre": "Cauquenes"}]
+        },
+        {
+        "id": 8, "nombre": "Región del Biobío",
+        "comunas": [{"id": 80201, "nombre": "Tome"}, {"id": 80202, "nombre": "Florida"}, {"id": 80203, "nombre": "Penco"}, {"id": 80204, "nombre": "Talcahuano"}, {"id": 80205, "nombre": "Concepcion"}, {"id": 80206, "nombre": "Hualqui"}, {"id": 80207, "nombre": "Coronel"}, {"id": 80208, "nombre": "Lota"}, {"id": 80209, "nombre": "Santa Juana"}, {"id": 80210, "nombre": "Chiguayante"}, {"id": 80211, "nombre": "San Pedro de la Paz"}, {"id": 80212, "nombre": "Hualpen"}, {"id": 80301, "nombre": "Cabrero"}, {"id": 80302, "nombre": "Yumbel"}, {"id": 80303, "nombre": "Tucapel"}, {"id": 80304, "nombre": "Antuco"}, {"id": 80305, "nombre": "San Rosendo"}, {"id": 80306, "nombre": "Laja"}, {"id": 80307, "nombre": "Quilleco"}, {"id": 80308, "nombre": "Los Angeles"}, {"id": 80309, "nombre": "Nacimiento"}, {"id": 80310, "nombre": "Negrete"}, {"id": 80311, "nombre": "Santa Barbara"}, {"id": 80312, "nombre": "Quilaco"}, {"id": 80313, "nombre": "Mulchen"}, {"id": 80314, "nombre": "Alto Bio Bio"}, {"id": 80401, "nombre": "Arauco"}, {"id": 80402, "nombre": "Curanilahue"}, {"id": 80403, "nombre": "Los Alamos"}, {"id": 80404, "nombre": "Lebu"}, {"id": 80405, "nombre": "Cañete"}, {"id": 80406, "nombre": "Contulmo"}, {"id": 80407, "nombre": "Tirua"}]
+        },
+        {
+        "id": 9, "nombre": "Región de La Araucanía",
+        "comunas": [{"id": 90101, "nombre": "Renaico"}, {"id": 90102, "nombre": "Angol"}, {"id": 90103, "nombre": "Collipulli"}, {"id": 90104, "nombre": "Los Sauces"}, {"id": 90105, "nombre": "Puren"}, {"id": 90106, "nombre": "Ercilla"}, {"id": 90107, "nombre": "Lumaco"}, {"id": 90108, "nombre": "Victoria"}, {"id": 90109, "nombre": "Traiguen"}, {"id": 90110, "nombre": "Curacautin"}, {"id": 90111, "nombre": "Lonquimay"}, {"id": 90201, "nombre": "Perquenco"}, {"id": 90202, "nombre": "Galvarino"}, {"id": 90203, "nombre": "Lautaro"}, {"id": 90204, "nombre": "Vilcun"}, {"id": 90205, "nombre": "Temuco"}, {"id": 90206, "nombre": "Carahue"}, {"id": 90207, "nombre": "Melipeuco"}, {"id": 90208, "nombre": "Nueva Imperial"}, {"id": 90209, "nombre": "Puerto Saavedra"}, {"id": 90210, "nombre": "Cunco"}, {"id": 90211, "nombre": "Freire"}, {"id": 90212, "nombre": "Pitrufquen"}, {"id": 90213, "nombre": "Teodoro Schmidt"}, {"id": 90214, "nombre": "Gorbea"}, {"id": 90215, "nombre": "Pucon"}, {"id": 90216, "nombre": "Villarrica"}, {"id": 90217, "nombre": "Tolten"}, {"id": 90218, "nombre": "Curarrehue"}, {"id": 90219, "nombre": "Loncoche"}, {"id": 90220, "nombre": "Padre Las Casas"}, {"id": 90221, "nombre": "Cholchol"}]
+        },
+        {
+        "id": 10, "nombre": "Región de Los Lagos",
+        "comunas": [{"id": 100201, "nombre": "San Pablo"}, {"id": 100202, "nombre": "San Juan"}, {"id": 100203, "nombre": "Osorno"}, {"id": 100204, "nombre": "Puyehue"}, {"id": 100205, "nombre": "Rio Negro"}, {"id": 100206, "nombre": "Purranque"}, {"id": 100207, "nombre": "Puerto Octay"}, {"id": 100301, "nombre": "Frutillar"}, {"id": 100302, "nombre": "Fresia"}, {"id": 100303, "nombre": "Llanquihue"}, {"id": 100304, "nombre": "Puerto Varas"}, {"id": 100305, "nombre": "Los Muermos"}, {"id": 100306, "nombre": "Puerto Montt"}, {"id": 100307, "nombre": "Maullin"}, {"id": 100308, "nombre": "Calbuco"}, {"id": 100309, "nombre": "Cochamo"}, {"id": 100401, "nombre": "Ancud"}, {"id": 100402, "nombre": "Quemchi"}, {"id": 100403, "nombre": "Dalcahue"}, {"id": 100404, "nombre": "Curaco de Velez"}, {"id": 100405, "nombre": "Castro"}, {"id": 100406, "nombre": "Chonchi"}, {"id": 100407, "nombre": "Queilen"}, {"id": 100408, "nombre": "Quellon"}, {"id": 100409, "nombre": "Quinchao"}, {"id": 100410, "nombre": "Puqueldon"}, {"id": 100501, "nombre": "Chaiten"}, {"id": 100502, "nombre": "Futaleufu"}, {"id": 100503, "nombre": "Palena"}, {"id": 100504, "nombre": "Hualaihue"}]
+        },
+        {
+        "id": 11, "nombre": "Región Aisén del General Carlos Ibáñez del Campo",
+        "comunas": [{"id": 110101, "nombre": "Guaitecas"}, {"id": 110102, "nombre": "Cisnes"}, {"id": 110103, "nombre": "Aysen"}, {"id": 110201, "nombre": "Coyhaique"}, {"id": 110202, "nombre": "Lago Verde"}, {"id": 110301, "nombre": "Rio Ibañez"}, {"id": 110302, "nombre": "Chile Chico"}, {"id": 110401, "nombre": "Cochrane"}, {"id": 110402, "nombre": "Tortel"}, {"id": 110403, "nombre": "O'Higins"}]
+        },
+        {
+        "id": 12, "nombre": "Región de Magallanes y la Antártica Chilena",
+        "comunas": [{"id": 120101, "nombre": "Torres del Paine"}, {"id": 120102, "nombre": "Puerto Natales"}, {"id": 120201, "nombre": "Laguna Blanca"}, {"id": 120202, "nombre": "San Gregorio"}, {"id": 120203, "nombre": "Rio Verde"}, {"id": 120204, "nombre": "Punta Arenas"}, {"id": 120301, "nombre": "Porvenir"}, {"id": 120302, "nombre": "Primavera"}, {"id": 120303, "nombre": "Timaukel"}, {"id": 120401, "nombre": "Antartica"}]
+        },
+        {
+        "id": 13, "nombre": "Región Metropolitana de Santiago ",
+        "comunas": [{"id": 130101, "nombre": "Tiltil"}, {"id": 130102, "nombre": "Colina"}, {"id": 130103, "nombre": "Lampa"}, {"id": 130201, "nombre": "Conchali"}, {"id": 130202, "nombre": "Quilicura"}, {"id": 130203, "nombre": "Renca"}, {"id": 130204, "nombre": "Las Condes"}, {"id": 130205, "nombre": "Pudahuel"}, {"id": 130206, "nombre": "Quinta Normal"}, {"id": 130207, "nombre": "Providencia"}, {"id": 130208, "nombre": "Santiago"}, {"id": 130209, "nombre": "La Reina"}, {"id": 130210, "nombre": "Ñuñoa"}, {"id": 130211, "nombre": "San Miguel"}, {"id": 130212, "nombre": "Maipu"}, {"id": 130213, "nombre": "La Cisterna"}, {"id": 130214, "nombre": "La Florida"}, {"id": 130215, "nombre": "La Granja"}, {"id": 130216, "nombre": "Independencia"}, {"id": 130217, "nombre": "Huechuraba"}, {"id": 130218, "nombre": "Recoleta"}, {"id": 130219, "nombre": "Vitacura"}, {"id": 130220, "nombre": "Lo Barrenechea"}, {"id": 130221, "nombre": "Macul"}, {"id": 130222, "nombre": "Peñalolen"}, {"id": 130223, "nombre": "San Joaquin"}, {"id": 130224, "nombre": "La Pintana"}, {"id": 130225, "nombre": "San Ramon"}, {"id": 130226, "nombre": "El Bosque"}, {"id": 130227, "nombre": "Pedro Aguirre Cerda"}, {"id": 130228, "nombre": "Lo Espejo"}, {"id": 130229, "nombre": "Estacion Central"}, {"id": 130230, "nombre": "Cerrillos"}, {"id": 130231, "nombre": "Lo Prado"}, {"id": 130232, "nombre": "Cerro Navia"}, {"id": 130301, "nombre": "San Jose de Maipo"}, {"id": 130302, "nombre": "Puente Alto"}, {"id": 130303, "nombre": "Pirque"}, {"id": 130401, "nombre": "San Bernardo"}, {"id": 130402, "nombre": "Calera de Tango"}, {"id": 130403, "nombre": "Buin"}, {"id": 130404, "nombre": "Paine"}, {"id": 130501, "nombre": "Peñaflor"}, {"id": 130502, "nombre": "Talagante"}, {"id": 130503, "nombre": "El Monte"}, {"id": 130504, "nombre": "Isla de Maipo"}, {"id": 130601, "nombre": "Curacavi"}, {"id": 130602, "nombre": "Maria Pinto"}, {"id": 130603, "nombre": "Melipilla"}, {"id": 130604, "nombre": "San Pedro"}, {"id": 130605, "nombre": "Alhue"}, {"id": 130606, "nombre": "Padre Hurtado"}]
+        },
+        {
+        "id": 14, "nombre": "Región de Los Ríos",
+        "comunas": [{"id": 100101, "nombre": "Lanco"}, {"id": 100102, "nombre": "Mariquina"}, {"id": 100103, "nombre": "Panguipulli"}, {"id": 100104, "nombre": "Mafil"}, {"id": 100105, "nombre": "Valdivia"}, {"id": 100106, "nombre": "Los Lagos"}, {"id": 100107, "nombre": "Corral"}, {"id": 100108, "nombre": "Paillaco"}, {"id": 100109, "nombre": "Futrono"}, {"id": 100110, "nombre": "Lago Ranco"}, {"id": 100111, "nombre": "La Union"}, {"id": 100112, "nombre": "Rio Bueno"}]
+        },
+        {
+        "id": 15, "nombre": "Región Arica y Parinacota",
+        "comunas": [{"id": 10101, "nombre": "Gral. Lagos"}, {"id": 10102, "nombre": "Putre"}, {"id": 10201, "nombre": "Arica"}, {"id": 10202, "nombre": "Camarones"}]
+        },
+        {
+        "id": 16, "nombre": "Región del Ñuble",
+        "comunas": [{"id": 80101, "nombre": "Cobquecura"}, {"id": 80102, "nombre": "Ñiquen"}, {"id": 80103, "nombre": "San Fabian"}, {"id": 80104, "nombre": "San Carlos"}, {"id": 80105, "nombre": "Quirihue"}, {"id": 80106, "nombre": "Ninhue"}, {"id": 80107, "nombre": "Trehuaco"}, {"id": 80108, "nombre": "San Nicolas"}, {"id": 80109, "nombre": "Coihueco"}, {"id": 80110, "nombre": "Chillan"}, {"id": 80111, "nombre": "Portezuelo"}, {"id": 80112, "nombre": "Pinto"}, {"id": 80113, "nombre": "Coelemu"}, {"id": 80114, "nombre": "Bulnes"}, {"id": 80115, "nombre": "San Ignacio"}, {"id": 80116, "nombre": "Ranquil"}, {"id": 80117, "nombre": "Quillon"}, {"id": 80118, "nombre": "El Carmen"}, {"id": 80119, "nombre": "Pemuco"}, {"id": 80120, "nombre": "Yungay"}, {"id": 80121, "nombre": "Chillan Viejo"}]
+        }
+    ]
+}
 
 
 const tipos = [
@@ -410,51 +90,51 @@ const dev_status = [
 
 const poblarRegiones = () => {
 	let regionSelect = document.getElementById("select-region");
-	let id_num = 1;
 
-	for (const region of regiones) {
-		let option = document.createElement("option");
-		option.value = id_num;
-		option.text = region;
-		regionSelect.appendChild(option);
-		id_num++;
-	}
+    for (const region of regionesComunas.regiones) {
+        let option = document.createElement("option");
+        option.value = region.id;
+        option.text = region.nombre;
+        regionSelect.appendChild(option);
+    }
 };
 
 
 
 const updateComunas = () => {
-	let regionSelect = document.getElementById("select-region");
-	let comunaSelect = document.getElementById("select-comuna");
+    let regionSelect = document.getElementById("select-region");
+    let comunaSelect = document.getElementById("select-comuna");
 
-	let selectedRegion = regionSelect.value;
+    let selectedRegion = regionSelect.value;
 
-	comunaSelect.innerHTML = "";
+    comunaSelect.innerHTML = "";
 
-	if(comunas[selectedRegion]){
-		comunaSelect.disabled = false;  // Enable comuna select
-		//Place holder para selccionar comunas
-		let placeHolder = document.createElement("option");
-		placeHolder.value = "";
-		placeHolder.text = "Seleccione una Comuna";
-		comunaSelect.appendChild(placeHolder);
-		comunas[selectedRegion].forEach(comuna => {
-			if(comunaId[comuna] == undefined){
-				console.log(comuna);
-			}
-			let option = document.createElement("option");
-			option.value = comunaId[comuna];
-			option.text = comuna;
-			comunaSelect.appendChild(option);
-		});
-	} else {
-		comunaSelect.disabled = true;  // Disable comuna select
-		let placeHolder = document.createElement("option");
-		placeHolder.value = "";
-		placeHolder.text = "Seleccione una Región";
-		comunaSelect.appendChild(placeHolder);
-	}
-}
+    const selectedRegionObj = regionesComunas.regiones.find(region => region.id == selectedRegion);
+
+    if (selectedRegionObj && selectedRegionObj.comunas) {
+        comunaSelect.disabled = false;  // Enable comuna select
+
+        // Place holder to select a comuna
+        let placeHolder = document.createElement("option");
+        placeHolder.value = "";
+        placeHolder.text = "Seleccione una Comuna";
+        comunaSelect.appendChild(placeHolder);
+
+        selectedRegionObj.comunas.forEach(comuna => {
+            let option = document.createElement("option");
+            option.value = comuna.id;  // Assuming each comuna has an id
+            option.text = comuna.nombre;  // Assuming each comuna has a nombre
+            comunaSelect.appendChild(option);
+        });
+    } else {
+        comunaSelect.disabled = true;  // Disable comuna select
+        let placeHolder = document.createElement("option");
+        placeHolder.value = "";
+        placeHolder.text = "Seleccione una Región";
+        comunaSelect.appendChild(placeHolder);
+    }
+};
+
 
 
 
