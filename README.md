@@ -7,7 +7,7 @@ La implementación de Flask permitirá almacenar y gestionar datos ingresados po
 
 ## Como puedo correr el repositorio?
 
-Primero, es necesario desacargar el repositorio. Una vesz hecho esto se podrá ver un archivo llamado requirements.txt, aqui se podrán ver las librería necesarias para poder ver el proyecto. Se recomienda crear un ambiente virtual para poder correr el sitio web. Para poder instalar las librerias se puede usar el comando:
+Primero, es necesario descargar el repositorio. Una vez hecho esto, se podrá ver un archivo llamado requirements.txt, donde se podrán ver las librerías necesarias para poder ver el proyecto. Se recomienda crear un ambiente virtual para poder correr la aplicación web. Para poder instalar las librerías, se puede usar el comando:
 
 ```bash
 pip install -r requirements.txt
