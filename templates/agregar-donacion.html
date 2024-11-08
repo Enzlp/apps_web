@@ -1,45 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Agregar Donacion</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
-    <link rel="icon" type="image/x-icon" href="../static/media/chip-svg.svg">
- 
-</head>
-<body class = "body-agregar">
-    <div >
-        <button id="corner-btn" type="button" onclick="window.location.href='/'">Home</button>
-    </div>
-	<div class = "main-container">
-        <!-- Mensaje flash de error o exito-->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div id="flash-messages" style="text-align: center; margin-bottom: 20px;">
-                    <ul>
-                        {% for category, message in messages %}
-                            <ul class="{{ category }}">{{ message }}
-                            {% for msg in error%}
-                                <ul>- {{ msg }}</ul>
-                            {% endfor %}
-                            </ul>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-        {% endwith %}
-		<div id="val-box" hidden>
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/agregar-donacion.css')}}">
+{% endblock %}
+
+{% block content %}
+    <!-- Formato Formulario -->
+    <div class = "add-device">
+        <div id="val-box" hidden>
             <h2 id="val-msg" ></h2>
             <ul id="val-list"></ul>
         </div>
-        <form name="agregarDonacion" method="post" enctype="multipart/form-data">
-
-            <h1 style="text-align: center;">Información personal</h1>
-            <br><hr><br>
-            <label for="nombre">Nombre</label>
+        <form id="agregarDonacion" name="agregarDonacion"method="post" enctype="multipart/form-data">
+            <h1 class = "form-title">Información personal</h1>
+            <label >Nombre
             <input type="text" name="nombre" id="nombre" minlength="3" maxlength = "80" size = "80" required><br>
-
+            </label>
             <label for="email">Email</label>
             <input type="email" name="email" id="email" size = "30" required><br>
 
@@ -49,19 +25,16 @@
             <label for="select-region">Region</label>
            	<select name="region" id="select-region" required>
                 <option value="">Seleccione una Región</option>
-            </select><br>
+            </select>
 
             <label for="select-comuna">Comuna</label>
             <select name="select-comuna" id="select-comuna" required disabled>
                 <option value="">Seleccione una Región</option>
-            </select><br>
-
-
-            <button id="add-btn" type="button">Agregar Dispositivo</button>
-            <!-- Para separar los botones -->
-            <div style="height: 10px;"></div>
-            <button id="submit-btn" type="button">Publicar esta donación</button>
-
+            </select>
+            <div class = "form-btns">
+                <button type = "button" id = "add-dev-btn" >Agregar Dispositivo</button>
+                <button type="button" id = "send-donation-btn"  >Publicar esta donación</button>
+            </div>
         </form>
         <div id = "confirm" style="text-align: center;" hidden>
             <h1>¿Confirma que desea publicar esta donación?</h1>
@@ -70,17 +43,16 @@
                 <button type="button">Ver Dispositivos</button>
             </div>
         </div>
-	</div>
-    <script>
-        document.getElementById("confirm-btn").addEventListener("click", () => {
-            document.forms["agregarDonacion"].submit(); // Submit the form when confirmed
-        });
-    </script>
-    <script src="../static/js/select.js"></script>
-    <script src="../static/js/add-elements.js"></script>
-    <script src="../static/js/validation.js"></script>
-    <script src="../static/js/flash-messages.js">
-        hideFlashMessages(5000);
-    </script>
-</body>
-</html>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    document.getElementById("confirm-btn").addEventListener("click", () => {
+        document.forms["agregarDonacion"].submit();
+    });
+</script>
+<script src="../static/js/select.js"></script>
+<script src="../static/js/add-elements.js"></script>
+<script src="../static/js/validation.js"></script>
+{% endblock %}

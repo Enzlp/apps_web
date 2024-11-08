@@ -203,53 +203,8 @@ const validateForm = () =>{
 };
 
 
-
-const validateComment = (id) => {
-    let nameField = document.getElementById(`nombre-comentarista${id}`);
-    let commentField = document.getElementById(`comentario-${id}`);
-    
-    // Validate the commentator's name
-    let nameValid = nameField.value.trim().length >= 3 && nameField.value.trim().length <= 80;
-    // Validate the comment
-    let commentValid = commentField.value.length >= 5;
-    return nameValid && commentValid;
-}
-
-const validateCommentSection = (id) => {
-    let validBox = document.getElementById(`val-box-${id}`);
-    let validMsgElem = document.getElementById(`val-msg-${id}`);
-    let validationResult = validateComment(id);
-
-    if (!validationResult) {
-        // Displaying the error message
-        validMsgElem.innerText = "No se pudo enviar el comentario ingresado.";
-		validBox.style.backgroundColor = "#ffdddd";
-		validBox.style.borderLeftColor = "#f44336";
-        validBox.hidden = false;
-    } else {
-
-        let commentForm = document.forms[`comment-form-${id}`];
-        commentForm.style.display = "none";
-        
-        // Hide the name input field and its label
-        let commentName = document.getElementById(`nombre-comentario-${id}`);
-        commentName.hidden = true;
-
-        // Displaying success message
-        validMsgElem.innerText = "Su mensaje fue agregado a comentarios";
-        validBox.style.backgroundColor = "#ddffdd";
-        validBox.style.borderLeftColor = "#4CAF50";
-        validBox.hidden = false;
-    }
-}
-
-
-
 //Eventos y ejecuciones
-let submitBtn = document.getElementById("submit-btn");
+let submitBtn = document.getElementById("send-donation-btn");
 if(submitBtn){
 	submitBtn.addEventListener("click", validateForm);
 }
-
-
-

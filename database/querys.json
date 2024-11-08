@@ -10,6 +10,12 @@
     "get_archivo_by_dispositivo_id": "SELECT * FROM `tarea2`.`archivo` WHERE dispositivo_id = %s;",
     "get_device_by_id": "SELECT * FROM `tarea2`.`dispositivo` WHERE id = %s; ",
     "get_region_by_id": "SELECT * FROM `tarea2`.`region` WHERE id = %s;",
-    "count_devices": "SELECT COUNT(*) FROM `tarea2`.`dispositivo`;"
+    "count_devices": "SELECT COUNT(*) FROM `tarea2`.`dispositivo`;",
+    "create_comment": "INSERT INTO `tarea2`.`comentario` (nombre, texto, fecha, dispositivo_id) VALUES (%s, %s, %s, %s);",
+    "get_comment_list": "SELECT * FROM `tarea2`.`comentario` WHERE dispositivo_id = %s ORDER BY fecha DESC;",
+    "count_device_type": "SELECT COUNT(*) FROM `tarea2`.`dispositivo` WHERE tipo = %s;",
+    "get_comuna_id": "SELECT * FROM `tarea2`.`comuna` WHERE nombre = %s;",
+    "count_contacts_comuna": "SELECT * FROM `tarea2`.`contacto` WHERE comuna_id = %s;",
+    "get_comuna_list": "SELECT comuna.nombre FROM `tarea2`.`comuna`"
 
 }

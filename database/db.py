@@ -1,6 +1,7 @@
 import pymysql
 import json
 import datetime
+from datetime import date
 
 DB_NAME = "tarea2"
 DB_USERNAME = "cc5002"
@@ -26,6 +27,7 @@ def get_conn():
 
 #-- querys --
 
+#Creation queries
 def create_contact(nombre, email, celular, comuna_id):
     conn = get_conn()
     cursor = conn.cursor()
@@ -60,6 +62,16 @@ def add_file(ruta_archivo, nombre_archivo, dispositivo_id):
     cursor.close()
     conn.close()
 
+def create_comment(nombre, texto, dispositivo_id):
+    conn = get_conn()
+    cursor = conn.cursor()
+    fecha = date.today()
+    cursor.execute(QUERY_DICT["create_comment"], (nombre, texto, fecha, dispositivo_id))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+#Get functions
 def get_comuna_by_id(id_comuna):
     conn = get_conn()
     cursor = conn.cursor()
@@ -117,7 +129,6 @@ def get_count_devices():
     conn.close()
     return count
 
-#Complex dc-related queries
 def get_device_page(page_num):
     offset = (page_num-1) * 5 #Partimos por pagina 1 y no 0
     conn = get_conn()
@@ -128,5 +139,50 @@ def get_device_page(page_num):
     conn.close()
     return devices
 
-    
+def get_comment_list(device_id):
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_comment_list"], (device_id,))
+    comments = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return comments
 
+def count_device_type(tipo):
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["count_device_type"], (tipo,))
+    count = cursor.fetchone()[0]
+    cursor.close()
+    conn.close()
+    return count
+
+def get_comuna_id(nombre):
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_comuna_id"], (nombre,))
+    name = cursor.fetchone()[0]
+    cursor.close()
+    conn.close()
+    return name
+
+def count_contacts_comuna(nombre):
+    conn = get_conn()
+    cursor = conn.cursor()
+    comuna_id = get_comuna_id(nombre)
+    cursor.execute(QUERY_DICT["count_contacts_comuna"], (comuna_id,))
+    result = cursor.fetchone()
+    count = result[0] if result and result[0] is not None else 0
+    cursor.close()
+    conn.close()
+    return count
+
+def get_comuna_list():
+    conn = get_conn()
+    cursor = conn.cursor()
+    cursor.execute(QUERY_DICT["get_comuna_list"], ())
+    lista= cursor.fetchall()
+    lista_comuna = [comuna[0] for comuna in lista]
+    cursor.close()
+    conn.close()
+    return lista_comuna

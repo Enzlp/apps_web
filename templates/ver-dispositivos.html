@@ -1,27 +1,23 @@
-<!DOCTYPE html>
-<html lang ="es">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Ver Dispositivos</title>
-	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
-</head>
-<body class= "ver-dispositivos-body">
-	<div>
-        <button id="corner-btn" type="button" onclick="window.location.href='/'">Home</button>
-    </div>
-	<div class = "table-container">
-		<table>
-			<thead>
-				<tr>
-					<th>Tipo</th>
-					<th>Nombre<br>Dispositivo</th>
-					<th>Estado</th>
-					<th>Comuna</th>
-					<th>Fotos</th>
-				</tr>
-			</thead>
-			<tbody>
+{% extends 'base.html' %}
+
+{%block css %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/ver-dispositivos.css')}}">
+{%endblock%}
+
+{% block content%}
+<div class="ver-dispositivos">
+    <table class = "table-dispositivos">
+        <thead class = "table-heading">
+            <tr>
+                <th>Tipo</th>
+                <th>Nombre<br>Dispositivo</th>
+                <th>Estado</th>
+                <th>Comuna</th>
+                <th>Fotos</th>
+            </tr>
+        </thead>  
+        
+        <tbody>
 			{% if data %}
 				{% for dev in data%}
 						<tr>
@@ -34,19 +30,19 @@
 				{% endfor %}
 			{% endif %}
 			</tbody>
-		</table>
-		
-		<div style="display: flex; justify-content: center; gap: 10px;">
-			{% if pagina != total_pages %}
-			<button id="next-btn" type="button"  onclick="location.href='{{ url_for('ver_dispositivos', pagina=pagina+1) }}'">Siguiente Página</button>
-			{% endif %}
-			{% if pagina > 1 %}
-			<button id="prev-btn" type="button"  onclick="location.href='{{ url_for('ver_dispositivos', pagina=pagina-1) }}'">Página Anterior</button>
-			{% endif %}
-		</div>
-		
-		
-	</div>
-	<script src="../static/js/show-info.js"></script>
-</body>
-</html>
+    </table>
+
+</div>
+<div class = "table-btns">
+    {% if pagina < total_pages %}
+    <button id="next-btn" type="button"  onclick="location.href='{{ url_for('ver_dispositivos', pagina=pagina+1) }}'">Siguiente Página</button>
+    {% endif %}
+    {% if pagina > 1 %}
+    <button id="prev-btn" type="button"  onclick="location.href='{{ url_for('ver_dispositivos', pagina=pagina-1) }}'">Página Anterior</button>
+    {% endif %}
+</div>
+{% endblock%}
+
+{% block javascript%}
+<script src="../static/js/show-info.js"></script>
+{%endblock%}

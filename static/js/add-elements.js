@@ -28,11 +28,11 @@ const addDeviceSection = () => {
         '<input type="file" name="fotos-productos'+sectionCount+'"id="fotos-productos'+sectionCount+'" multiple accept="image/*,.pdf" required><br>';
 
     const form = document.querySelector('form[name="agregarDonacion"]');
-    const addDeviceButton = document.getElementById('add-btn');
-    form.insertBefore(newDiv, addDeviceButton);
+    const formButtonsDiv = form.querySelector('.form-btns');   
+    form.insertBefore(newDiv, formButtonsDiv);
 };
 
-const addSectionBtn = document.getElementById("add-btn");
+const addSectionBtn = document.getElementById("add-dev-btn");
 
 addSectionBtn.addEventListener("click", () => {
     addDeviceSection();

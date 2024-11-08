@@ -1,0 +1,87 @@
+/* Container*/
+.main-container {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.index-intro{
+    width: 100%;
+    max-height: min-content;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    background: white;
+    margin: 0em 1em 2em 1em;
+    padding: 0.5em 1em 1em 1em;
+    
+}
+
+.index-intro > * {
+    color: var(--black-color);
+    font-family: "Roboto", sans-serif;
+    }
+
+.home-title{    
+    font-size: 40px;
+    text-align: center;
+    margin-top: 100px;
+    font-weight: bold;
+    color: rgb(0, 0, 255);
+
+
+}
+
+.home-description{
+    padding : 20px;
+    display: flex;                
+    justify-content: center;      
+}
+
+#home-img{
+    width: 700px;
+    height: auto;
+    padding: 20px;
+    margin-right: 200px;
+    margin-left: 10px;
+}
+.home-text{
+    margin-left: 200px;
+    text-align: justify; 
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+#add-dev-btn{
+    text-align: center;
+    padding: 0.5em;
+    border: 0.2em solid var(--black-color);
+    box-shadow: 0.175em 0.175em 0px 0px black;
+    border-radius: 0.3em;
+    font-weight: 600;
+    margin-right: 50px;
+    font-size: 20px;
+}
+#add-dev-btn:hover {
+    background-color: rgb(0, 0, 255);
+    color: white;
+    transition: 0.2s ease;
+}
+
+#view-dev-btn{
+    text-align: center;
+    padding: 0.5em;
+    border: 0.2em solid var(--black-color);
+    box-shadow: 0.175em 0.175em 0px 0px black;
+    border-radius: 0.3em;
+    font-weight: 600;
+    margin-left: 50px;
+    font-size: 20px;
+}
+#view-dev-btn:hover {
+    background-color: rgb(0, 0, 255);
+    color: white;
+    transition: 0.2s ease;
+}

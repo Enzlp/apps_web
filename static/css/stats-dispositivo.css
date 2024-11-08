@@ -1,0 +1,32 @@
+.stats-container{
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    background: white;
+    border: .2em solid var(--black-color);
+    border-radius: .25em;
+    margin: 1em 1em 2em 1em;
+    box-shadow: .3em .3em 0px 0px black;
+    margin: 0 auto;
+    width:70%;
+}
+
+
+.stats-container h1 {
+    display: flex;               /* Enable flexbox on h1 */
+    justify-content: center;     /* Center horizontally */
+    align-items: center;         /* Center vertically (if needed) */
+    margin: 0;                   /* Remove default margin */
+    padding: 20px;               /* Add padding as needed */
+    width: 100%;                 /* Make h1 take up full width of the container */
+}
+
+.highcharts-description{
+    display: flex;               /* Enable flexbox on h1 */
+    justify-content: center;     /* Center horizontally */
+    align-items: center;         /* Center vertically (if needed) */
+    margin: 0;                   /* Remove default margin */
+    padding: 20px;               /* Add padding as needed */
+    width: 100%;  
+}
+

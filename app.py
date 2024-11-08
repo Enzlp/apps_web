@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask_cors import cross_origin
 from database import db
 from utils import validations as vd
 import filetype
@@ -6,7 +7,6 @@ import hashlib
 from werkzeug.utils import secure_filename
 import os
 import math
-
 
 #Carpeta de archivos
 UPLOAD_FOLDER = 'static/uploads'
@@ -26,7 +26,6 @@ def agregar_donacion():
         c_email = request.form.get("email")
         c_celular = request.form.get("phone")
         c_comuna_id = request.form.get("select-comuna")
-        error_messages = []
         #Verificador de que todo se cumpla
         all_valid = True
         if vd.validate_contact_info(c_name, c_email, c_celular, c_comuna_id):
@@ -66,19 +65,12 @@ def agregar_donacion():
                                     fotos.append(file_info)
                                 device_info["archivos"] = fotos
                             else:
-                                error_msg = "Campos Invalidos en la seccion de Archivos"
-                                if error_msg not in error_messages:
-                                    error_messages.append(error_msg)
                                 all_valid = False          
                     else:
-                        error_msg = "Campos Invalidos en la seccion de Dispositivos"
-                        if error_msg not in error_messages:
-                            error_messages.append(error_msg)
                         all_valid = False                       
 
             if not all_valid:
-                flash("No se pudo enviar el formulario, porfavor revise los siguientes campos:", "error")
-                return render_template('/agregar-donacion.html', error = "Error de validacion")
+                return render_template('/agregar-donacion.html')
             #5. Insertamos datos en las tablas correspondientes
             c_id=db.create_contact(c_name, c_email, c_celular, c_comuna_id)
             for device in devices:
@@ -88,13 +80,8 @@ def agregar_donacion():
             #Agregar mensaje de exito
             flash("La donación se ha realizado con éxito.", "success")
             return redirect(url_for('home_page'))   
-        else:
-            error_msg = "Campos Invalidos en la seccion de Contacto"
-            if error_msg not in error_messages:
-                error_messages.append(error_msg)    
-            #Agregar mensaje de error dejando el formulario intacto
-            flash("No se pudo enviar el formulario, porfavor revise los siguientes campos:", "error")
-            return render_template('/agregar-donacion.html', error = error_messages)
+        else:  
+            return render_template('/agregar-donacion.html')
     elif request.method =="GET":
         
         return render_template('/agregar-donacion.html')
@@ -116,40 +103,110 @@ def ver_dispositivos(pagina):
         _, ruta_foto, _ , _ = list_files[0] #queremos mostrar la primera foto
         dev_info = {
             "id": dev_id,
-            "tipo": tipo,
-            "nombre": nombre_dev,
-            "estado": estado,
-            "comuna": comuna,
+            "tipo": tipo.capitalize(),
+            "nombre": nombre_dev.capitalize(),
+            "estado": estado.capitalize(),
+            "comuna": comuna.capitalize(),
             "ruta_foto": ruta_foto
         }
         data_list.append(dev_info)
     return render_template('ver-dispositivos.html', data = data_list, pagina = pagina, total_pages = total_pages)
 
-@app.route('/informacion-dispositivo/<int:id>')
+@app.route('/informacion-dispositivo/<int:id>', methods = ["GET", "POST"])
 def info_disp(id):
-    _, contacto_id, nombre_dev,desc, tipo, anos_uso, estado = db.get_device_by_id(id)
-    _, nombre_contacto, email, celular, comuna_id, _ = db.get_contacto_by_id(contacto_id)
-    _, comuna, region_id = db.get_comuna_by_id(comuna_id)
-    _, region = db.get_region_by_id(region_id)
-    list_files = db.get_archivo_by_dispositivo_id(id)
-    archivos = []
-    for file in list_files:
-        _,ruta, _, _=file
-        archivos.append(ruta)
-    dev_info = {
-        "nombre_contacto": nombre_contacto,
-        "contacto_email": email,
-        "celular_contacto": celular,
-        "anos_uso": anos_uso,
-        "estado": estado,
-        "nombre_dev": nombre_dev,
-        "tipo": tipo,
-        "comuna": comuna,
-        "region": region,
-        "descripcion": desc,
-        "archivos": archivos
-    }
-    return render_template('/informacion-dispositivo.html', device_info = dev_info)
+    if request.method == "POST":
+        comment_name = request.form.get("nombre")
+        comment_content = request.form.get("contenido")
+
+        if not vd.validate_comment(comment_name, comment_content):
+            return redirect(url_for('info_disp', id=id))
+        
+        db.create_comment(comment_name, comment_content, id)
+        return redirect(url_for('info_disp', id=id))
+    
+    elif request.method == "GET":
+        _, contacto_id, nombre_dev,desc, tipo, anos_uso, estado = db.get_device_by_id(id)
+        _, nombre_contacto, email, celular, comuna_id, _ = db.get_contacto_by_id(contacto_id)
+        _, comuna, region_id = db.get_comuna_by_id(comuna_id)
+        _, region = db.get_region_by_id(region_id)
+        list_files = db.get_archivo_by_dispositivo_id(id)
+        archivos = []
+        for file in list_files:
+            _,ruta, _, _=file
+            archivos.append(ruta)
+        dev_info = {
+            "id_dispositivo": id,
+            "nombre_contacto": nombre_contacto,
+            "contacto_email": email,
+            "celular_contacto": celular,
+            "anos_uso": anos_uso,
+            "estado": estado,
+            "nombre_dev": nombre_dev,
+            "tipo": tipo,
+            "comuna": comuna,
+            "region": region,
+            "descripcion": desc,
+            "archivos": archivos
+        }
+        #Informacion comentarios
+        comment_list = []
+        comments = db.get_comment_list(device_id=id)
+        for comment in comments:
+            _, nombre, texto, fecha, _ = comment
+            comentario = {
+                "nombre": nombre,
+                "texto": texto,
+                "fecha": fecha
+            }
+            comment_list.append(comentario)
+        dev_info["comentarios"] = comment_list
+        return render_template('/informacion-dispositivo.html', device_info = dev_info)
+
+@app.route('/stats-contacto', methods=['GET'])
+def stats_contacto():
+    return render_template('/stats-contacto.html')
+
+@app.route('/stats-dispositivo', methods=['GET'])
+def stats_dispositivo():
+    return render_template('/stats-dispositivo.html')
+
+@app.route("/get-stats-data-devices", methods=["GET"])
+@cross_origin(origin="127.0.0.1", supports_credentials=True)
+def get_stats_data_devices():
+    tipos = [ 
+    "pantalla",
+    "notebook",
+    "tablet",
+    "celular",
+    "consola",
+    "mouse",
+    "teclado",
+    "impresora",
+    "parlante",
+    "audífonos",
+    "otro"]
+
+    counts = []
+    for tipo in tipos:
+        count = {}
+        count["name"] = tipo.capitalize() 
+        count["y"] = db.count_device_type(tipo)
+        counts.append(count)
+    return jsonify(counts)
+
+@app.route("/get-stats-data-contacts", methods=["GET"])
+@cross_origin(origin="127.0.0.1", supports_credentials=True)
+def get_stats_data_contacts():
+    comunas = db.get_comuna_list()
+    data = []
+    for comuna in comunas:
+        res = db.count_contacts_comuna(comuna)
+        if res != 0:
+            count = {}
+            count["data"] = db.count_contacts_comuna(comuna)
+            count["category"] = comuna
+            data.append(count)
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True)

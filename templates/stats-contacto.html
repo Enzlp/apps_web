@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{%block css %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/stats-contacto.css')}}">
+{%endblock%}
+
+{%block content%}
+<div class = "stats-container">
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+        <p class = "highcharts-description">
+            Gráfico de el número de contactos por comuna. </p>
+        <p class = "highcharts-description">Se mostrarán las comunas que posean al menos un contacto.
+        </p>
+    </figure>
+</div>
+{% endblock %}
+
+{%block javascript %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="{{url_for('static', filename='js/stats-contacto.js')}}"></script>
+{%endblock%}

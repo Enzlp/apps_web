@@ -136,3 +136,35 @@ def validate_dev_state(estado):
     if estado not in opt:
         return False
     return True
+
+#Comentario validations
+def validate_comment(name, text):
+    validations = [
+        validate_comment_name(name),
+        validate_comment_text(text)
+    ]
+    return all(validations)
+
+def validate_comment_name(nombre):
+    strip_nombre = nombre.strip()
+    if not strip_nombre:
+        return False
+    #Santitizacion caracteres
+    if not re.match(r'^[a-zA-Z0-9\s\-_]*$', strip_nombre):
+        return False
+    
+    return (3 <= len(strip_nombre) <= 80)
+
+def validate_comment_text(texto):
+    strip_texto = texto.strip()
+    if not strip_texto:
+        return False
+    if not isinstance(texto, str):
+        return False
+    texto_sin_espacios = texto.replace(" ", "")
+    if len(texto_sin_espacios)<5:
+        return False
+    #Sanitizacion
+    if not re.match(r'^[a-zA-Z0-9\s!?,.]*$', texto):
+        return False
+    return True
